@@ -128,7 +128,7 @@ export default function DroneList(props) {
             )}
             <TableCell align="right">Drone Type</TableCell>
             <TableCell align="right">Drone Model</TableCell>
-            <TableCell align="right">Charge Per Daye</TableCell>
+            <TableCell align="right">Charge Per Hour</TableCell>
             <TableCell align="right">Mileage</TableCell>
 
           </TableRow>
