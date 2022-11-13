@@ -48,7 +48,7 @@ export default function FindSourceAndDestination(props) {
           <TextField
             id="source"
             name="source"
-            label="Source"
+            label="Farm"
             fullWidth
             autoComplete="Source"
             variant="standard"
@@ -60,7 +60,7 @@ export default function FindSourceAndDestination(props) {
           <TextField
             id="destination"
             name="destination"
-            label="Drone Destination"
+            label="Farmland"
             fullWidth
             autoComplete="Drone Type"
             variant="standard"
