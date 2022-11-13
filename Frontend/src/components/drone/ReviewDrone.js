@@ -29,7 +29,7 @@ const ReviewDrone = (props) => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="drone">
-                        Model
+                        Usage Type
                     </TableCell>
                     <TableCell align="right">{drone.model}</TableCell>
                 </TableRow>
@@ -38,7 +38,7 @@ const ReviewDrone = (props) => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="drone">
-                        Type
+                        Model Type
                     </TableCell>
                     <TableCell align="right">{drone.type}</TableCell>
                 </TableRow>
@@ -56,7 +56,7 @@ const ReviewDrone = (props) => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="drone">
-                        mileage 
+                        Mileage 
                     </TableCell>
                     <TableCell align="right">{drone.mileage}</TableCell>
                 </TableRow>

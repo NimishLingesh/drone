@@ -78,8 +78,9 @@ export default function FindSourceAndDestination(props) {
           autoWidth
           style={{width:'30%'}}
         >
-          <MenuItem value={'Sedan'}>Sedan</MenuItem>
-          <MenuItem value={'Hatchback'}>Hatchback</MenuItem>
+          <MenuItem value={'Mini'}>DJI Mini SE Data collection</MenuItem>
+          <MenuItem value={'Phantom'}>DJI Phantom Pro 4 Surveillence</MenuItem>
+          <MenuItem value={'Agras'}>DJI Agras T20 Payload</MenuItem>
           </Select>
         </Grid>
         

@@ -124,7 +124,7 @@ export default function DroneList(props) {
               <TableCell >Drone Number</TableCell>
               </>
             ) : (
-            <TableCell >Drone Number</TableCell>
+            <TableCell align="right">Drone Number</TableCell>
             )}
             <TableCell align="right">Drone Type</TableCell>
             <TableCell align="right">Drone Model</TableCell>

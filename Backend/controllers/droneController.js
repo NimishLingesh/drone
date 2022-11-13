@@ -13,7 +13,7 @@ export const addDrone = (req, res) => {
             available, 
             mileage,            
         } = req.body;
-        // console.log('Rohit Shetty', req.body);
+        // console.log('Add drone request body', req.body);
         const getDroneByIdQuery = 'SELECT * FROM drone WHERE droneId = ?;';
 
         const droneUpdateQuery = `UPDATE drone SET
@@ -73,13 +73,14 @@ export const addDrone = (req, res) => {
                 available,  
                 mileage, 
             ], (err, result) => {
-                console.log('RUSHIHLHLIHLIHILLHI', result);
+                console.log('Add new drone - Response from DB: ', result);
 
                 if(err){
                     sendInternalServerError(res);
                 }
                 else{
-                    console.log('Adding Drone');
+                    console.log('Sent request to add a Drone');
+                    console.log('Now, verifying its persistence in the DB');
                     con.query(getLastInerstedIdQuery, (err, result) => {
                         if(result){
                             let id = result[0]['LAST_INSERT_ID()'];
