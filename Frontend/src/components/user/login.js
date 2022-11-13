@@ -83,7 +83,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://innovationatwork.ieee.org/wp-content/uploads/2018/07/iStock-829197466-1024x683.jpg)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1506947411487-a56738267384?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -101,40 +101,17 @@ export default function SignInSide() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
+            
+            <Box align='left'>
+                <Typography component="h1" variant="h4" >
+                  Sign in
+                </Typography>
+            </Box>
+
+
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 
-            <br></br>
-            <Grid item xs={12}>
-                  {/* <div class="form-check form-check-inline">
-                    <input onChange={handlPersona} value="customer" class="form-check-input" type="radio" name="customer" id="customer"/>
-                    <label class="form-check-label" for="customer">
-                    Customer
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input onChange={handlPersona} value="customer" class="form-check-input" type="radio" name="carOwner" id="carOwner"/>
-                    <label class="form-check-label" for="carOwner">
-                    Car Owner
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input onChange={handlPersona} value="customer" class="form-check-input" type="radio" name="admin" id="admin"/>
-                    <label class="form-check-label" for="admin">
-                    Admin
-                    </label>
-                  </div> */}
-                  {/* <Radio value={'customer'} checked={row.carId === props.ride.carId} onChange={selectCar}>Customer</Radio>
-                  <Radio value={JSON.stringify(row)} checked={row.carId === props.ride.carId} onChange={selectCar}>Owner</Radio>
-                  <Radio value={JSON.stringify(row)} checked={row.carId === props.ride.carId} onChange={selectCar}>Admin</Radio> */}
-                  
-              </Grid>
-              <br></br>
+           
 
               <TextField
                 margin="normal"
@@ -164,6 +141,8 @@ export default function SignInSide() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                style={{
+                  backgroundColor: '#1c3f60'}}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
