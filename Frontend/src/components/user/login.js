@@ -45,11 +45,11 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     var customer = data.get('customer');
-    var carOwner = data.get('carOwner');
+    var droneOwner = data.get('droneOwner');
     var admin = data.get('admin');
     var persona;
     if (customer === 'on') persona = "customer";
-    if (carOwner === 'on') persona = "carOwner";
+    if (droneOwner === 'on') persona = "droneOwner";
     if (admin === 'on') persona = "admin";
     // eslint-disable-next-line no-console
 

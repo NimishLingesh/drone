@@ -1,20 +1,20 @@
 import { BACKEND_URL } from "./constants";
 import { BACKEND_PORT } from "./constants";
 
-export const bookRide = async (ride, user) => {
-    const {carId, source, destination, chargePerDay: charges} = ride;
+export const bookBooking = async (booking, user) => {
+    const {droneId, source, destination, chargePerHour: charges} = booking;
     let date = new Date();
     date = date.getUTCFullYear() + '-' +
     ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
     ('00' + date.getUTCDate()).slice(-2) + ' ';
     const payload = {
-        carId, 
+        droneId, 
         source,
         destination, 
         charges,
         status: 'In-Progress',
         customerId: user.userId,
-        rideDate: date,
+        bookingDate: date,
     }
     console.log(payload);
     const options = {
@@ -22,32 +22,32 @@ export const bookRide = async (ride, user) => {
         headers:  {'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
     };
-    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/ride/addRide`, options);
+    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/booking/addBooking`, options);
     const status = response.status;
     const data = await response.json();
     return {status, data};
 }
 
-export const fechInProgressRides = async (userId, persona) => {
+export const fechInProgressBookings = async (userId, persona) => {
     const options = {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
     }
-    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/ride/inProgress?userId=${userId}&persona=${persona}`, options);
+    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/booking/inProgress?userId=${userId}&persona=${persona}`, options);
     const status = response.status;
     const data  = await response.json();
     return {status, data};
 }
 
-export const fetchRideListFromDB = async (customerId, persona) => {
+export const fetchBookingListFromDB = async (customerId, persona) => {
     const options = {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
     }
 
-    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/ride/userRides?userId=${customerId}&persona=${persona}`, options);
+    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/booking/userBookings?userId=${customerId}&persona=${persona}`, options);
     const status = response.status;
     const data  = await response.json();
-    console.log('Ride Service', data);
+    console.log('Booking Service', data);
     return {status, data};
 }

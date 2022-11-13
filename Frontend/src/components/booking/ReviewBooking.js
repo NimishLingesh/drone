@@ -6,11 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import RideList from '../car/CarList';
+import BookingList from '../drone/DroneList';
 
-const ReviewRide = (props) => {
+const ReviewBooking = (props) => {
 
-    const {ride} = props;
+    const {booking} = props;
     return (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -25,58 +25,58 @@ const ReviewRide = (props) => {
             </TableHead> */}
             <TableBody>
                 <TableRow
-                    key={ride.source}
+                    key={booking.source}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Course
                     </TableCell>
-                    <TableCell align="right">{ride.source}</TableCell>
+                    <TableCell align="right">{booking.source}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={ride.destination}
+                    key={booking.destination}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Destination
                     </TableCell>
-                    <TableCell align="right">{ride.destination}</TableCell>
+                    <TableCell align="right">{booking.destination}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={ride.carType}
+                    key={booking.droneType}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Type
                     </TableCell>
-                    <TableCell align="right">{ride.carType}</TableCell>
+                    <TableCell align="right">{booking.droneType}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={ride.carId}
+                    key={booking.droneId}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Number
                     </TableCell>
-                    <TableCell align="right">{ride.carNumber}</TableCell>
+                    <TableCell align="right">{booking.droneNumber}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={ride.model}
+                    key={booking.model}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Model
                     </TableCell>
-                    <TableCell align="right">{ride.model}</TableCell>
+                    <TableCell align="right">{booking.model}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={ride.chargePerDay}
+                    key={booking.chargePerHour}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="ride">
+                    <TableCell component="th" scope="booking">
                         Charge Per Day
                     </TableCell>
-                    <TableCell align="right">{ride.chargePerDay}</TableCell>
+                    <TableCell align="right">{booking.chargePerHour}</TableCell>
                 </TableRow>
 
             </TableBody>
@@ -85,4 +85,4 @@ const ReviewRide = (props) => {
       );
 }
 
-export default ReviewRide;
+export default ReviewBooking;

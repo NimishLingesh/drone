@@ -5,11 +5,11 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function ChooseRide() {
+export default function ChooseBooking() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Choose a ride
+        Choose a booking
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>

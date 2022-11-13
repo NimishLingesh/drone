@@ -4,8 +4,8 @@ import { createConnection } from 'mysql';
 import express from 'express';
 
 import userRouter from './routes/userRoutes.js';
-import carRouter from  './routes/carRoutes.js';
-import rideRouter from './routes/rideRoutes.js';
+import droneRouter from  './routes/droneRoutes.js';
+import bookingRouter from './routes/bookingRoutes.js';
 
 dotenv.config();
 var app = express();
@@ -31,7 +31,7 @@ app.listen(process.env.PORT, () => {
 });
 
 app.use('/user', userRouter);
-app.use('/car', carRouter);
-app.use('/ride', rideRouter);
+app.use('/drone', droneRouter);
+app.use('/booking', bookingRouter);
 
 export default con;

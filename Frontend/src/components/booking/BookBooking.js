@@ -12,11 +12,12 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CarDetails from './CarDetails';
-import ReviewCar from './ReviewCar';
-import { addCar } from '../../services/carService';
+import FindSourceAndDestination from './findSourceAndDestination';
+import ChooseBooking from './chooseBooking';
+import BookingList from '../drone/DroneList';
+import ReviewBooking from './ReviewBooking';
+import {bookBooking} from '../../services/bookingService';
 import { AuthContext } from '../authenticaion/ProvideAuth';
-
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -30,40 +31,24 @@ function Copyright() {
   );
 }
 
-const steps = ['Add car details', 'Review and Add car'];
+const steps = ['Find a booking', 'Choose booking', 'Book your booking'];
 
 
 
 const theme = createTheme();
 
-const AddCar = () => {
-
+export default function BookBooking() {
   const [activeStep, setActiveStep] = useState(0);
-  const [car, setCar] = useState();
+  const [booking, setBooking] = useState();
   const [loading, setLoading] = useState();
   const authContext = useContext(AuthContext);
-
   const {user} = authContext;
-
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <CarDetails car={car} setCar={setCar}/>;
-      // case 1:
-        // return <UserVerification car={car} setCar={setCar}/>;
-      case 1:
-        return <ReviewCar car={car} setCar={setCar}/>;
-      default:
-        // throw new Error('Unknown step');
-    }
-  }
-
   const handleNext = async () => {
-    setLoading(true);
     setActiveStep(activeStep + 1);
-    if(activeStep == 1){
-      const resp = await addCar(car, user);
+    if(activeStep == 2){
+      const resp = await bookBooking(booking, user);
       if(resp.status === 200){
+        setBooking(resp.data.payload);
         setLoading(false);
       }
       else{
@@ -75,6 +60,28 @@ const AddCar = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <FindSourceAndDestination 
+                  setBooking={setBooking}
+                  booking={booking}
+              />;
+      case 1:
+        return <BookingList 
+                  setBooking={setBooking}
+                  booking={booking}
+                />;
+      case 2:
+        return <ReviewBooking 
+                  setBooking={setBooking}
+                  booking={booking}
+                />;
+      default:
+        // throw new Error('Unknown step');
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,16 +95,11 @@ const AddCar = () => {
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
-        {/* <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar> */}
       </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="m" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Add car
+            Booking Booking
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -110,16 +112,17 @@ const AddCar = () => {
             {activeStep === steps.length ? (
               <>
               {!loading && (
-              <React.Fragment>
+                <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your Car with number {car.carId} has been booked into the system. You can watch the details of trips in Rides Section
+                  Thank you for using RentalAV. Your Booking is booked. Have a safe journey
                 </Typography>
               </React.Fragment>
               )}
               </>
+              
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
@@ -135,7 +138,7 @@ const AddCar = () => {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Add Asset' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Book booking' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
@@ -147,5 +150,3 @@ const AddCar = () => {
     </ThemeProvider>
   );
 }
-
-export default AddCar;

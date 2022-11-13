@@ -6,59 +6,59 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import RideList from '../car/CarList';
+import BookingList from './DroneList';
 
-const ReviewCar = (props) => {
+const ReviewDrone = (props) => {
 
-    const {car} = props;
+    const {drone} = props;
     return (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 400 }} aria-label="simple table">
             <TableBody>
                 <TableRow
-                    key={car.carId}
+                    key={drone.droneId}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="car">
+                    <TableCell component="th" scope="drone">
                         Number
                     </TableCell>
-                    <TableCell align="right">{car.carNumber}</TableCell>
+                    <TableCell align="right">{drone.droneNumber}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={car.model}
+                    key={drone.model}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="car">
+                    <TableCell component="th" scope="drone">
                         Model
                     </TableCell>
-                    <TableCell align="right">{car.model}</TableCell>
+                    <TableCell align="right">{drone.model}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={car.carType}
+                    key={drone.droneType}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="car">
+                    <TableCell component="th" scope="drone">
                         Type
                     </TableCell>
-                    <TableCell align="right">{car.type}</TableCell>
+                    <TableCell align="right">{drone.type}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={car.chargePerDay}
+                    key={drone.chargePerHour}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="car">
+                    <TableCell component="th" scope="drone">
                         Expected Charge Per Day 
                     </TableCell>
-                    <TableCell align="right">{car.chargePerDay}</TableCell>
+                    <TableCell align="right">{drone.chargePerHour}</TableCell>
                 </TableRow>
                 <TableRow
-                    key={car.cmileage}
+                    key={drone.cmileage}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="car">
+                    <TableCell component="th" scope="drone">
                         mileage 
                     </TableCell>
-                    <TableCell align="right">{car.mileage}</TableCell>
+                    <TableCell align="right">{drone.mileage}</TableCell>
                 </TableRow>
             </TableBody>
           </Table>
@@ -66,4 +66,4 @@ const ReviewCar = (props) => {
       );
 }
 
-export default ReviewCar;
+export default ReviewDrone;

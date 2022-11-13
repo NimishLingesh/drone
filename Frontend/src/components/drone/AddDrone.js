@@ -12,12 +12,11 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import FindSourceAndDestination from './findSourceAndDestination';
-import ChooseRide from './chooseRide';
-import RideList from '../car/CarList';
-import ReviewRide from './ReviewRide';
-import {bookRide} from '../../services/rideService';
+import DroneDetails from './DroneDetails';
+import ReviewDrone from './ReviewDrone';
+import { addDrone } from '../../services/droneService';
 import { AuthContext } from '../authenticaion/ProvideAuth';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -31,24 +30,40 @@ function Copyright() {
   );
 }
 
-const steps = ['Find a ride', 'Choose ride', 'Book your ride'];
+const steps = ['Add drone details', 'Review and Add drone'];
 
 
 
 const theme = createTheme();
 
-export default function BookRide() {
+const AddDrone = () => {
+
   const [activeStep, setActiveStep] = useState(0);
-  const [ride, setRide] = useState();
+  const [drone, setDrone] = useState();
   const [loading, setLoading] = useState();
   const authContext = useContext(AuthContext);
+
   const {user} = authContext;
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <DroneDetails drone={drone} setDrone={setDrone}/>;
+      // case 1:
+        // return <UserVerification drone={drone} setDrone={setDrone}/>;
+      case 1:
+        return <ReviewDrone drone={drone} setDrone={setDrone}/>;
+      default:
+        // throw new Error('Unknown step');
+    }
+  }
+
   const handleNext = async () => {
+    setLoading(true);
     setActiveStep(activeStep + 1);
-    if(activeStep == 2){
-      const resp = await bookRide(ride, user);
+    if(activeStep == 1){
+      const resp = await addDrone(drone, user);
       if(resp.status === 200){
-        setRide(resp.data.payload);
         setLoading(false);
       }
       else{
@@ -60,28 +75,6 @@ export default function BookRide() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <FindSourceAndDestination 
-                  setRide={setRide}
-                  ride={ride}
-              />;
-      case 1:
-        return <RideList 
-                  setRide={setRide}
-                  ride={ride}
-                />;
-      case 2:
-        return <ReviewRide 
-                  setRide={setRide}
-                  ride={ride}
-                />;
-      default:
-        // throw new Error('Unknown step');
-    }
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,11 +88,16 @@ export default function BookRide() {
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
+        {/* <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Company name
+          </Typography>
+        </Toolbar> */}
       </AppBar>
-      <Container component="main" maxWidth="m" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Ride Booking
+            Add drone
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -112,17 +110,16 @@ export default function BookRide() {
             {activeStep === steps.length ? (
               <>
               {!loading && (
-                <React.Fragment>
+              <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Thank you for using RentalAV. Your Ride is booked. Have a safe journey
+                  Your Drone with number {drone.droneId} has been booked into the system. You can watch the details of trips in Bookings Section
                 </Typography>
               </React.Fragment>
               )}
               </>
-              
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
@@ -138,7 +135,7 @@ export default function BookRide() {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Book ride' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Add Asset' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
@@ -150,3 +147,5 @@ export default function BookRide() {
     </ThemeProvider>
   );
 }
+
+export default AddDrone;

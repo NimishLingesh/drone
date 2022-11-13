@@ -1,58 +1,58 @@
 import con from  '../index.js';
 import { sendCustomError, sendCustomSuccess, sendInternalServerError } from './common.js';
 
-export const addCar = (req, res) => {
+export const addDrone = (req, res) => {
     try{
         const {
-            carId,
-            carNumber,
+            droneId,
+            droneNumber,
             ownerId, 
             model, 
             type, 
-            chargePerDay, 
+            chargePerHour, 
             available, 
             mileage,            
         } = req.body;
-        console.log('Rohit Shetty', req.body);
-        const getCarByIdQuery = 'SELECT * FROM car WHERE carId = ?;';
+        // console.log('Rohit Shetty', req.body);
+        const getDroneByIdQuery = 'SELECT * FROM drone WHERE droneId = ?;';
 
-        const carUpdateQuery = `UPDATE car SET
-            carNumber = ?,
+        const droneUpdateQuery = `UPDATE drone SET
+            droneNumber = ?,
             model = ?,
             type = ?,
-            chargePerDay = ?,
+            chargePerHour = ?,
             available = ?,
             mileage = ?
-            WHERE carId = ?
+            WHERE droneId = ?
         `;
-        const carAddQuery = `INSERT INTO car (
-            carId,
-            carNumber, 
+        const droneAddQuery = `INSERT INTO drone (
+            droneId,
+            droneNumber, 
             ownerId, 
             model, 
             type, 
-            chargePerDay, 
+            chargePerHour, 
             available, 
             mileage) VALUES (NULL,?, ?,?,?,?,?,?)
         `;
 
         const getLastInerstedIdQuery = `SELECT LAST_INSERT_ID();`;
 
-        if(carId){ //Update
-            con.query(carUpdateQuery, [
-                carNumber, 
+        if(droneId){ //Update
+            con.query(droneUpdateQuery, [
+                droneNumber, 
                 model, 
                 type, 
-                chargePerDay,
+                chargePerHour,
                 available,  
                 mileage, 
-                carId
+                droneId
             ], (err, result) => {
                 if(err){
                     sendInternalServerError(res);
                 }
                 else{
-                    con.query(getCarByIdQuery, [carId], (err, result)=>{
+                    con.query(getDroneByIdQuery, [droneId], (err, result)=>{
                         if(result[0]){
                             sendCustomSuccess(res, { data: result[0]});
                         }
@@ -64,12 +64,12 @@ export const addCar = (req, res) => {
             });
         }
         else{ //Add New
-            con.query(carAddQuery, [
-                carNumber,
+            con.query(droneAddQuery, [
+                droneNumber,
                 ownerId, 
                 model, 
                 type, 
-                chargePerDay,
+                chargePerHour,
                 available,  
                 mileage, 
             ], (err, result) => {
@@ -79,11 +79,11 @@ export const addCar = (req, res) => {
                     sendInternalServerError(res);
                 }
                 else{
-                    console.log('Adding Car');
+                    console.log('Adding Drone');
                     con.query(getLastInerstedIdQuery, (err, result) => {
                         if(result){
                             let id = result[0]['LAST_INSERT_ID()'];
-                            con.query(getCarByIdQuery, [id], (err, result)=>{
+                            con.query(getDroneByIdQuery, [id], (err, result)=>{
                                 if(result[0]){
                                     console.log('')
                                     sendCustomSuccess(res, { data: result[0]});
@@ -108,12 +108,12 @@ export const addCar = (req, res) => {
 
 
 //Get Request
-export const getCarsByType = (req, res) => {
+export const getDronesByType = (req, res) => {
     try{
         
         const type = req.query.type;
-        const filterCarsBasedOnTypeQuery = `SELECT * FROM car WHERE type = ?`;
-        con.query(filterCarsBasedOnTypeQuery, [type], (err, result) => {
+        const filterDronesBasedOnTypeQuery = `SELECT * FROM drone WHERE type = ?`;
+        con.query(filterDronesBasedOnTypeQuery, [type], (err, result) => {
             if(err){
                 sendInternalServerError(res);
             }
@@ -128,11 +128,11 @@ export const getCarsByType = (req, res) => {
     }
 }
 
-export const getCarsByOwner = (req, res) => {
+export const getDronesByOwner = (req, res) => {
     try{
         const ownerId = req.query.ownerId;
-        const filterCarsBasedOnTypeQuery = `SELECT * FROM car WHERE ownerId = ?`;
-        con.query(filterCarsBasedOnTypeQuery, [ownerId], (err, result) => {
+        const filterDronesBasedOnTypeQuery = `SELECT * FROM drone WHERE ownerId = ?`;
+        con.query(filterDronesBasedOnTypeQuery, [ownerId], (err, result) => {
             if(err){
                 sendInternalServerError(res);
             }

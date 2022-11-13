@@ -6,12 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {fetchRideListFromDB} from '../../services/rideService';
+import {fetchBookingListFromDB} from '../../services/bookingService';
 import { AuthContext } from '../authenticaion/ProvideAuth';
 import {useLocation} from 'react-router-dom';
 
-function createData(rideNumber, carNumber, date,  charge) {
-  return { rideNumber, carNumber, charge, date };
+function createData(bookingNumber, droneNumber, date,  charge) {
+  return { bookingNumber, droneNumber, charge, date };
 }
 
 const rows = [
@@ -29,42 +29,42 @@ const rows = [
 
 ];
 
-export default function RideList() {
+export default function BookingList() {
 
     const location = useLocation();
     console.log(location);
 
     const {persona } = location.state;
     const authContext = useContext(AuthContext);
-    const [rideList, setRideList] = useState();
+    const [bookingList, setBookingList] = useState();
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetchRideList();
+        fetchBookingList();
     }, []);
     console.log(authContext);
 
-    const fetchRideList = async () => {
+    const fetchBookingList = async () => {
         const {user} = authContext;
         console.log('Auth Context', user);
-        const resp = await fetchRideListFromDB(user.userId, persona);
+        const resp = await fetchBookingListFromDB(user.userId, persona);
         if(resp.status === 200){
             const rows = [];
             console.log(resp.data.payload);
             resp.data.payload.forEach(el=> {
                 console.log(el);
-                const { carNumber, carId, rideId, source, 
-                    destination, status, chargePerDay} = el;
+                const { droneNumber, droneId, bookingId, source, 
+                    destination, status, chargePerHour} = el;
                 rows.push({
-                    carId,
-                    carNumber, 
-                    rideId, 
+                    droneId,
+                    droneNumber, 
+                    bookingId, 
                     source, 
                     destination,
                     status, 
-                    chargePerDay,
+                    chargePerHour,
                 })
             });
-            setRideList(rows);
+            setBookingList(rows);
             setLoading(false);
         }
         else{
@@ -80,27 +80,27 @@ export default function RideList() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell>Ride Number</TableCell>
+                <TableCell>Booking Number</TableCell>
                 <TableCell>Source</TableCell>
                 <TableCell align="right">Destination</TableCell>
                 <TableCell align="right">Charge Per Daye</TableCell>
-                <TableCell align="right">Car Number</TableCell>
+                <TableCell align="right">Drone Number</TableCell>
                 <TableCell align="right">Status</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
-            {rideList.map((row) => (
+            {bookingList.map((row) => (
                 <TableRow
-                key={row.carId}
+                key={row.droneId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">
-                    {row.rideId}
+                    {row.bookingId}
                 </TableCell>
                 <TableCell align="right">{row.source}</TableCell>
                 <TableCell align="right">{row.destination}</TableCell>
-                <TableCell align="right">{row.chargePerDay}</TableCell>
-                <TableCell align="right">{row.carNumber}</TableCell>
+                <TableCell align="right">{row.chargePerHour}</TableCell>
+                <TableCell align="right">{row.droneNumber}</TableCell>
                 <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>
 
                 </TableRow>

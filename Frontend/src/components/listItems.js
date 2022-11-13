@@ -36,7 +36,7 @@ export const mainListItems = (persona) => {
       </ListItem>
       {(persona === 'owner' || persona === 'admin') && (
       <Link to={{
-        pathname: '/RideList',
+        pathname: '/BookingList',
         state: {
           persona: 'owner'
         }}}>
@@ -44,12 +44,12 @@ export const mainListItems = (persona) => {
           <ListItemIcon>
             <BarChartIcon />
           </ListItemIcon>
-          <ListItemText style={{color: 'Black'}} primary="Your Asset Rides" />
+          <ListItemText style={{color: 'Black'}} primary="Your Asset Bookings" />
         </ListItem>
         </Link>
       )}
       <Link to={{
-      pathname: '/RideList',
+      pathname: '/BookingList',
       state: {
         persona: 'customer'
       }}}>
@@ -57,21 +57,21 @@ export const mainListItems = (persona) => {
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Your Rides" />
+        <ListItemText style={{color: 'Black'}} primary="Your Bookings" />
       </ListItem>
       </Link>
       
       
       {(persona === 'owner' || persona === 'admin' )&& (
-        <ListItem button component={Link} to='/AddCar'>
+        <ListItem button component={Link} to='/AddDrone'>
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Add a Car" />
+        <ListItemText style={{color: 'Black'}} primary="Add a Drone" />
       </ListItem>
       )}
       {(persona === 'owner' || persona === 'admin') && (
-        <ListItem button component={Link} to='/CarList'>
+        <ListItem button component={Link} to='/DroneList'>
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
