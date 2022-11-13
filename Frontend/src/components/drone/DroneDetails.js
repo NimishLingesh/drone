@@ -42,9 +42,9 @@ const DroneDetails = props => {
           <TextField
             id="droneModel"
             name="droneModel"
-            label="Drone Model"
+            label="Drone Usage Type"
             fullWidth
-            autoComplete="Drone Model"
+            autoComplete="Drone Usage Type"
             variant="standard"
             onChange={(e)=>handleFormChange(e,'model')}
             defaultValue={drone ? drone.model: ''}
@@ -74,26 +74,32 @@ const DroneDetails = props => {
             defaultValue={drone ? drone.mileage: ''}
           />
         </Grid>
+        {/* <Typography variant="h7" gutterBottom>
+        Drone Model
+        </Typography> */}
         <Grid item xs={12}>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            displayEmpty
             value={props.drone? props.drone.type : ''}
             label="Drone Type"
             onChange={(e)=>handleFormChange(e,'type')}
             autoWidth
             style={{width:'30%'}}
           >
-            <MenuItem value={'Sedan'}>Sedan</MenuItem>
-            <MenuItem value={'Hatchback'}>Hatchback</MenuItem>
+            {/* <MenuItem value="">Drone Model</MenuItem> */}
+            <MenuItem value={'Mini'}>DJI Mini SE Data collection</MenuItem>
+            <MenuItem value={'Phantom'}>DJI Phantom Pro 4 Surveillence</MenuItem>
+            <MenuItem value={'Agras'}>DJI Agras T20 Payload</MenuItem>
             </Select>
           </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="I confirm that I am 21 years old or over."
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );

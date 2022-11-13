@@ -2,7 +2,7 @@
   "type": "module",
   "name": "backend",
   "version": "1.0.0",
-  "description": "Group Project CMPE 273- Indeed Application Prototype",
+  "description": "Group Project CMPE 281- Drone Application Prototype",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
