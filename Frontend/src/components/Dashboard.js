@@ -137,11 +137,6 @@ const DashboardContent = () => {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -152,7 +147,7 @@ const DashboardContent = () => {
               justifyContent: 'flex-end',
               px: [1],
             }}
-          >
+          > 
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
