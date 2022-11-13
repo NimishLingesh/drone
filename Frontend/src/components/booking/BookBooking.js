@@ -31,7 +31,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Find a booking', 'Choose booking', 'Book your booking'];
+const steps = ['Select the area', 'Select the drone', 'Confirm the booking'];
 
 
 
