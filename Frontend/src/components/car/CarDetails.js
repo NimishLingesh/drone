@@ -88,12 +88,12 @@ const CarDetails = props => {
             <MenuItem value={'Hatchback'}>Hatchback</MenuItem>
             </Select>
           </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="I confirm that I am 21 years old or over."
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );

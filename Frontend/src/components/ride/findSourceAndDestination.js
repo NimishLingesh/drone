@@ -41,14 +41,14 @@ export default function FindSourceAndDestination(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Select Source and Destination
+        Select Farm and Farmland
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12}>
           <TextField
             id="source"
             name="source"
-            label="Source"
+            label="Farm"
             fullWidth
             autoComplete="Source"
             variant="standard"
@@ -60,7 +60,7 @@ export default function FindSourceAndDestination(props) {
           <TextField
             id="destination"
             name="destination"
-            label="Car Destination"
+            label="Farmland"
             fullWidth
             autoComplete="Car Type"
             variant="standard"
@@ -127,12 +127,12 @@ export default function FindSourceAndDestination(props) {
             variant="standard"
           />
         </Grid> */}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="I confirm that I am 21 years old or over."
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );

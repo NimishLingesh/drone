@@ -31,7 +31,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Find a ride', 'Choose ride', 'Book your ride'];
+const steps = ['Select the area', 'Select the drone', 'Confirm your booking'];
 
 
 
@@ -99,7 +99,7 @@ export default function BookRide() {
       <Container component="main" maxWidth="m" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Ride Booking
+            Drone Booking
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
