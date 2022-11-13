@@ -8,13 +8,13 @@ import { Card } from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const CarDetails = props => {
+const DroneDetails = props => {
 
-  const {car, setCar} = props;
+  const {drone, setDrone} = props;
 
   const handleFormChange = (e,field) => {
-    setCar({
-      ...car,
+    setDrone({
+      ...drone,
       [field]: e.target.value,
     })
   }
@@ -23,31 +23,31 @@ const CarDetails = props => {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Add car details
+        Add drone details
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
-            id="carNumber"
-            name="carNumber"
-            label="Car Number"
+            id="droneNumber"
+            name="droneNumber"
+            label="Drone Number"
             fullWidth
-            autoComplete="Car Type"
+            autoComplete="Drone Type"
             variant="standard"
-            onChange={(e)=>handleFormChange(e,'carNumber')}
-            defaultValue={car ? car.carNumber: ''}
+            onChange={(e)=>handleFormChange(e,'droneNumber')}
+            defaultValue={drone ? drone.droneNumber: ''}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="carModel"
-            name="carModel"
-            label="Car Model"
+            id="droneModel"
+            name="droneModel"
+            label="Drone Model"
             fullWidth
-            autoComplete="Car Model"
+            autoComplete="Drone Model"
             variant="standard"
             onChange={(e)=>handleFormChange(e,'model')}
-            defaultValue={car ? car.model: ''}
+            defaultValue={drone ? drone.model: ''}
           />
         </Grid>
         <Grid item xs={12}>
@@ -58,28 +58,28 @@ const CarDetails = props => {
             fullWidth
             autoComplete="Your expected charges: $"
             variant="standard"
-            onChange={(e)=>handleFormChange(e,'chargePerDay')}
-            defaultValue={car ? car.chargePerDay: ''}
+            onChange={(e)=>handleFormChange(e,'chargePerHour')}
+            defaultValue={drone ? drone.chargePerHour: ''}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             id="mileage"
             name="Mileage"
-            label="Mileage of you car"
+            label="Mileage of you drone"
             fullWidth
-            autoComplete="Mileage of you car"
+            autoComplete="Mileage of you drone"
             variant="standard"
             onChange={(e)=>handleFormChange(e,'mileage')}
-            defaultValue={car ? car.mileage: ''}
+            defaultValue={drone ? drone.mileage: ''}
           />
         </Grid>
         <Grid item xs={12}>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={props.car? props.car.type : ''}
-            label="Car Type"
+            value={props.drone? props.drone.type : ''}
+            label="Drone Type"
             onChange={(e)=>handleFormChange(e,'type')}
             autoWidth
             style={{width:'30%'}}
@@ -99,4 +99,4 @@ const CarDetails = props => {
   );
 }
 
-export default CarDetails;
+export default DroneDetails;

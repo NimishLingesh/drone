@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { AuthContext } from '../authenticaion/ProvideAuth';
-import {fechInProgressRides} from '../../services/rideService';
+import {fechInProgressBookings} from '../../services/bookingService';
 
-// function createData(rideNumber, carNumber, date,  charge) {
-//   return { rideNumber, carNumber, charge, date };
+// function createData(bookingNumber, droneNumber, date,  charge) {
+//   return { bookingNumber, droneNumber, charge, date };
 // }
 
 // const rows = [
@@ -28,26 +28,26 @@ import {fechInProgressRides} from '../../services/rideService';
 
 // ];
 
-const InProgressRideList = props => {
+const InProgressBookingList = props => {
 
 
     const authContext = useContext(AuthContext);
     const {user} = authContext;
-    const [inProgressRides, setInProgressRides] = useState([]);
+    const [inProgressBookings, setInProgressBookings] = useState([]);
     const [loading, setLoading] = useState(true);
 
 
 
     useEffect(() => {
-        getInProgressRides();
+        getInProgressBookings();
     },[])
 
-    const getInProgressRides = async () => {
+    const getInProgressBookings = async () => {
         setLoading(true);
         const {userId, persona} = user;
-        const resp = await fechInProgressRides(userId, persona);
+        const resp = await fechInProgressBookings(userId, persona);
         if(resp.status === 200){
-            setInProgressRides(resp.data.payload);
+            setInProgressBookings(resp.data.payload);
             setLoading(false);
         }
         else{
@@ -55,36 +55,36 @@ const InProgressRideList = props => {
         }
     }
 
-    //   const selectRide = (e) =>{
-    //     const {carId,model, chargePerDay } = JSON.parse(e.target.value);
-    //     console.log("Ride selected", JSON.parse(e.target.value));
-    //     const {setRide, ride} = props;
-    //     setRide({
-    //       ...ride,
-    //       carId,
+    //   const selectBooking = (e) =>{
+    //     const {droneId,model, chargePerHour } = JSON.parse(e.target.value);
+    //     console.log("Booking selected", JSON.parse(e.target.value));
+    //     const {setBooking, booking} = props;
+    //     setBooking({
+    //       ...booking,
+    //       droneId,
     //       model, 
-    //       chargePerDay,
+    //       chargePerHour,
     //     })
     //   }
 
-    //   const fetchCarList = async (type) => {
-    //     const resp = await fetchCarListFromDB(type);
+    //   const fetchDroneList = async (type) => {
+    //     const resp = await fetchDroneListFromDB(type);
     //     console.log(resp);
     //     if(resp.status === 200){
     //       console.log(resp.data.payload);
     //       const rows = [];
     //       resp.data.payload.forEach(el => {
-    //         const { carId, ownerId, type, model, chargePerDay, mileage} = el;
+    //         const { droneId, ownerId, type, model, chargePerHour, mileage} = el;
     //         rows.push({
-    //           carId,
+    //           droneId,
     //           ownerId, 
     //           type, 
     //           model,
-    //           chargePerDay, 
+    //           chargePerHour, 
     //           mileage,
     //         })
     //       });
-    //       setCarList(rows);
+    //       setDroneList(rows);
 
     //       setLoading(false);
     //     }
@@ -98,29 +98,29 @@ const InProgressRideList = props => {
         <>
         {!loading && (
         <>
-        {inProgressRides.length > 0 ? (
+        {inProgressBookings.length > 0 ? (
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                 <TableRow>
                     <TableCell>Source</TableCell>
                     <TableCell align="right">Destination</TableCell>
-                    <TableCell align="right">Car Number</TableCell>
+                    <TableCell align="right">Drone Number</TableCell>
                     <TableCell align="right">Status</TableCell>
     
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {inProgressRides.map((row) => (
+                {inProgressBookings.map((row) => (
                     <TableRow
-                    key={row.rideId}
+                    key={row.bookingId}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="row">
                         {row.source}
                     </TableCell>
                     <TableCell align="right">{row.destination}</TableCell>
-                    <TableCell align="right">{row.carId}</TableCell>
+                    <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>
     
     
@@ -130,7 +130,7 @@ const InProgressRideList = props => {
             </Table>
             </TableContainer>
         ) : (
-            <span>No Rides in Progress</span>
+            <span>No Bookings in Progress</span>
         )
         }
         
@@ -140,4 +140,4 @@ const InProgressRideList = props => {
     );
 }
 
-export default InProgressRideList;
+export default InProgressBookingList;

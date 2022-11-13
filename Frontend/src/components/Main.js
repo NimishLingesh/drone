@@ -5,12 +5,12 @@ import Signup from './user/signup';
 import NavBar from './NavBar';
 import Profile from './user/profile';
 import Pricing from './user/pricing';
-import SearchCar from './ride/BookRide';
-import AddCar from './car/AddCar';
+import SearchDrone from './booking/BookBooking';
+import AddDrone from './drone/AddDrone';
 import Dashboard from './Dashboard';
 import ProvideAuth from './authenticaion/ProvideAuth';
-import CarList from './car/CarList';
-import RideList from './ride/RideList';
+import DroneList from './drone/DroneList';
+import BookingList from './booking/BookingList';
 import PrivateRoute from './authenticaion/PrivateRoute';
 import AdminAnalysis from './integration/AdminAnalysis';
 import { BACKEND_URL } from '../services/constants';
@@ -78,19 +78,19 @@ const Main = () => {
                             <Pricing></Pricing>
                         </PrivateRoute>
                         
-                        <PrivateRoute path="/searchCar">
-                            <SearchCar></SearchCar>
+                        <PrivateRoute path="/searchDrone">
+                            <SearchDrone></SearchDrone>
                         </PrivateRoute>
                         
-                        <PrivateRoute path="/AddCar">
-                                <AddCar></AddCar>
+                        <PrivateRoute path="/AddDrone">
+                                <AddDrone></AddDrone>
                         </PrivateRoute>
                         
-                        <PrivateRoute path="/CarList">
-                                <CarList persona={'owner'}/>
+                        <PrivateRoute path="/DroneList">
+                                <DroneList persona={'owner'}/>
                         </PrivateRoute>
-                        <PrivateRoute path="/RideList">
-                                <RideList/>
+                        <PrivateRoute path="/BookingList">
+                                <BookingList/>
                         </PrivateRoute>
                         <PrivateRoute path="/Dashboard">
                             <Dashboard></Dashboard>

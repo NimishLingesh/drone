@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom';
 const images = [
   {
     url: 'https://i.pcmag.com/imagery/roundups/05Nrmdf1qCW3N8Xl2idjrkW-2.fit_lim.size_1028x578.v1569492797.jpg',
-    title: 'Book Ride',
+    title: 'Book Booking',
     width: '100%',
   }
 ];
@@ -17,7 +17,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
   height: 200,
   [theme.breakpoints.down('sm')]: {
-    width: '100% !important', // Overrides inline-style
+    width: '100% !important', // Overbookings inline-style
     height: 100,
   },
   '&:hover, &.Mui-focusVisible': {
@@ -77,10 +77,10 @@ const ImageMarked = styled('span')(({ theme }) => ({
   transition: theme.transitions.create('opacity'),
 }));
 
-export default function BookRideButton() {
+export default function BookBookingButton() {
     const history = useHistory();
-    const redirectToAddCar = () => {
-        history.push('./searchCar');
+    const redirectToAddDrone = () => {
+        history.push('./searchDrone');
       }
       
     return (
@@ -107,7 +107,7 @@ export default function BookRideButton() {
                         pt: 2,
                         pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                     }}
-                    onClick={redirectToAddCar}
+                    onClick={redirectToAddDrone}
                 >
                 {image.title}
                 <ImageMarked className="MuiImageMarked-root" />

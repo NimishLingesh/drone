@@ -45,11 +45,11 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     var customer = data.get('customer');
-    var carOwner = data.get('carOwner');
+    var droneOwner = data.get('droneOwner');
     var admin = data.get('admin');
     var persona;
     if (customer === 'on') persona = "customer";
-    if (carOwner === 'on') persona = "carOwner";
+    if (droneOwner === 'on') persona = "droneOwner";
     if (admin === 'on') persona = "admin";
     // eslint-disable-next-line no-console
 
@@ -118,9 +118,9 @@ export default function SignInSide() {
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input onChange={handlPersona} value="customer" class="form-check-input" type="radio" name="carOwner" id="carOwner"/>
-                    <label class="form-check-label" for="carOwner">
-                    Car Owner
+                    <input onChange={handlPersona} value="customer" class="form-check-input" type="radio" name="droneOwner" id="droneOwner"/>
+                    <label class="form-check-label" for="droneOwner">
+                    Drone Owner
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -129,9 +129,9 @@ export default function SignInSide() {
                     Admin
                     </label>
                   </div> */}
-                  {/* <Radio value={'customer'} checked={row.carId === props.ride.carId} onChange={selectCar}>Customer</Radio>
-                  <Radio value={JSON.stringify(row)} checked={row.carId === props.ride.carId} onChange={selectCar}>Owner</Radio>
-                  <Radio value={JSON.stringify(row)} checked={row.carId === props.ride.carId} onChange={selectCar}>Admin</Radio> */}
+                  {/* <Radio value={'customer'} checked={row.droneId === props.booking.droneId} onChange={selectDrone}>Customer</Radio>
+                  <Radio value={JSON.stringify(row)} checked={row.droneId === props.booking.droneId} onChange={selectDrone}>Owner</Radio>
+                  <Radio value={JSON.stringify(row)} checked={row.droneId === props.booking.droneId} onChange={selectDrone}>Admin</Radio> */}
                   
               </Grid>
               <br></br>

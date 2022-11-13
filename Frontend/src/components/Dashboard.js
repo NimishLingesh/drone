@@ -23,9 +23,9 @@ import { AuthContext }from './authenticaion/ProvideAuth';
 import { SettingsInputSvideoRounded } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
-import { fechInProgressRides } from '../services/rideService';
-import InProgressRideList from './ride/InProgressRideList';
-import BookRideButton from './ride/BookRideButton';
+import { fechInProgressBookings } from '../services/bookingService';
+import InProgressBookingList from './booking/InProgressBookingList';
+import BookBookingButton from './booking/BookBookingButton';
 
 
 function Copyright(props) {
@@ -188,7 +188,7 @@ const DashboardContent = () => {
                 >
                   {/* <Chart /> */}
                   
-                  <BookRideButton/>
+                  <BookBookingButton/>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -207,7 +207,7 @@ const DashboardContent = () => {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <InProgressRideList/>
+                  <InProgressBookingList/>
                 </Paper>
               </Grid>
             </Grid>

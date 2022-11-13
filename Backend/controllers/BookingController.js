@@ -1,60 +1,60 @@
 import { sendInternalServerError, sendCustomSuccess } from "./common.js";
 import con  from '../index.js';
 
-export const addRide = (req, res) => {
+export const addBooking = (req, res) => {
     try{
         const {
-            rideId, 
-            carId,
+            bookingId, 
+            droneId,
             customerId, 
             source, 
             destination, 
-            rideDate, 
-            charges: chargePerDay, 
+            bookingDate, 
+            charges: chargePerHour, 
             status,            
         } = req.body;
 
-        const getRideByIdQuery = 'SELECT * FROM ride WHERE rideId = ?;';
+        const getBookingByIdQuery = 'SELECT * FROM booking WHERE bookingId = ?;';
 
-        const rideUpdateQuery = `UPDATE ride SET
-            carId = ?,
+        const bookingUpdateQuery = `UPDATE booking SET
+            droneId = ?,
             customerId = ?,
             source = ?,
             destination = ?,
-            rideDate = ?
-            chargePerDay = ?,
+            bookingDate = ?
+            chargePerHour = ?,
             status = ?,
-            WHERE rideId = ?;
+            WHERE bookingId = ?;
         `;
-        const rideAddQuery = `INSERT INTO ride (
-            rideId,
-            carId,
+        const bookingAddQuery = `INSERT INTO booking (
+            bookingId,
+            droneId,
             customerId, 
             source, 
             destination, 
-            rideDate, 
-            chargePerDay, 
+            bookingDate, 
+            chargePerHour, 
             status) VALUES (NULL, ?, ?,?,?,?,?,?)
         `;
 
         const getLastInerstedIdQuery = `SELECT LAST_INSERT_ID();`;
 
-        if(rideId){ //Update
-            con.query(rideUpdateQuery, [
-                rideId,
-                carId,
+        if(bookingId){ //Update
+            con.query(bookingUpdateQuery, [
+                bookingId,
+                droneId,
                 customerId, 
                 source, 
                 destination, 
-                rideDate, 
-                chargePerDay, 
+                bookingDate, 
+                chargePerHour, 
                 status,
             ], (err, result) => {
                 if(err){
                     sendInternalServerError(res);
                 }
                 else{
-                    con.query(getRideByIdQuery, [rideId], (err, result)=>{
+                    con.query(getBookingByIdQuery, [bookingId], (err, result)=>{
                         if(result[0]){
                             sendCustomSuccess(res, { data: result[0]});
                         }
@@ -66,13 +66,13 @@ export const addRide = (req, res) => {
             });
         }
         else{ //Add New
-            con.query(rideAddQuery, [
-                carId,
+            con.query(bookingAddQuery, [
+                droneId,
                 customerId, 
                 source, 
                 destination, 
-                rideDate, 
-                chargePerDay, 
+                bookingDate, 
+                chargePerHour, 
                 status,
             ], (err, result) => {
 
@@ -84,7 +84,7 @@ export const addRide = (req, res) => {
                     con.query(getLastInerstedIdQuery, (err, result) => {
                         if(result){
                             let id = result[0]['LAST_INSERT_ID()'];
-                            con.query(getRideByIdQuery, [id], (err, result)=>{
+                            con.query(getBookingByIdQuery, [id], (err, result)=>{
                                 if(result[0]){
                                     sendCustomSuccess(res, { data: result[0]});
                                 }
@@ -109,11 +109,11 @@ export const addRide = (req, res) => {
 
 
 
-// export const getUserRides = (req, res) => {
+// export const getUserBookings = (req, res) => {
 //     try{
 //         const userId = req.query.userId;
-//         const filterRidesBasedOnTypeQuery = `SELECT * FROM ride WHERE customerId = ?`;
-//         con.query(filterRidesBasedOnTypeQuery, [userId], (err, result) => {
+//         const filterBookingsBasedOnTypeQuery = `SELECT * FROM booking WHERE customerId = ?`;
+//         con.query(filterBookingsBasedOnTypeQuery, [userId], (err, result) => {
 //             if(err){
 //                 sendInternalServerError(res);
 //             }
@@ -128,23 +128,23 @@ export const addRide = (req, res) => {
 //     }
 // }
 
-export const getInProgressRide = (req, res) => {
+export const getInProgressBooking = (req, res) => {
     try{
         const userId = req.query.userId;
         const persona = req.query.persona;
         console.log(persona);
-        const inProgressRidesQuery = `select carNumber, car.chargePerDay, 
-        ride.carId, rideId, source, destination, status, customerId 
-                from ride INNER JOIN car on car.carId = ride.carId 
-                inner join user on ride.customerId = user.userId 
+        const inProgressBookingsQuery = `select droneNumber, drone.chargePerHour, 
+        booking.droneId, bookingId, source, destination, status, customerId 
+                from booking INNER JOIN drone on drone.droneId = booking.droneId 
+                inner join user on booking.customerId = user.userId 
                 where customerId = ? and status = 'In-Progress' and persona = ?;`;
-        con.query(inProgressRidesQuery, [userId, persona], (err, result)=>{
+        con.query(inProgressBookingsQuery, [userId, persona], (err, result)=>{
             if(err){
                 console.log(err);
                 sendInternalServerError(res);
             }
             else{
-                console.log('Rides', result);
+                console.log('Bookings', result);
                 sendCustomSuccess(res, result); 
             }
         })
@@ -154,19 +154,19 @@ export const getInProgressRide = (req, res) => {
     }
 }
 
-export const getUserRides = (req, res) => {
+export const getUserBookings = (req, res) => {
     try{
         const userId = req.query.userId;
         const persona = req.query.persona;
         let query;
         if(persona === 'owner'){
-            query = `select carNumber, r.carId, c.chargePerDay,rideId, source, destination, status, customerId, r.chargePerDay 
-            from ride as r INNER JOIN car as c on c.carId = r.carId 
+            query = `select droneNumber, r.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, r.chargePerHour 
+            from booking as r INNER JOIN drone as c on c.droneId = r.droneId 
             where ownerId = 1`;
         }
         else if(persona === 'customer'){
-            query = `select carNumber, r.carId, c.chargePerDay,rideId, source, destination, status, customerId, r.chargePerDay 
-            from ride as r INNER JOIN car as c on c.carId = r.carId 
+            query = `select droneNumber, r.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, r.chargePerHour 
+            from booking as r INNER JOIN drone as c on c.droneId = r.droneId 
             where customerId = 1`;
         }
 

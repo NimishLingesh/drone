@@ -48,11 +48,11 @@ export default function Signup() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     var customer = data.get('customer');
-    var carOwner = data.get('carOwner');
+    var droneOwner = data.get('droneOwner');
     var admin = data.get('admin');
     var persona;
     if (customer === 'on') persona = "customer";
-    if (carOwner === 'on') persona = "owner";
+    if (droneOwner === 'on') persona = "owner";
     if (admin === 'on') persona = "admin";
     // eslint-disable-next-line no-console
     var data1= {
@@ -144,12 +144,12 @@ export default function Signup() {
                       checked={persona === 'Owner'}  
                       class="form-check-input" 
                       type="radio" 
-                      name="carOwner" 
-                      id="carOwner"
+                      name="droneOwner" 
+                      id="droneOwner"
                       onClick={()=>{setPersona('Owner')}}
                     />
-                    <label class="form-check-label" for="carOwner">
-                      Car Owner
+                    <label class="form-check-label" for="droneOwner">
+                      Drone Owner
                     </label>
                   </div>
                   <div class="form-check form-check-inline">

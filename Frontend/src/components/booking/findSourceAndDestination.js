@@ -11,29 +11,29 @@ export default function FindSourceAndDestination(props) {
 
   
   const setSource = (e) => {
-    const { ride, setRide} = props;
-    setRide(
+    const { booking, setBooking} = props;
+    setBooking(
       {
-        ...ride,
+        ...booking,
         source: e.target.value,
       }
     );
   }
   const setDestination = (e) => {
-    const { ride, setRide} = props;
-    setRide(
+    const { booking, setBooking} = props;
+    setBooking(
       {
-        ...ride,
+        ...booking,
         destination: e.target.value,
       }
     );
   }
-  const setCarType = (e) => {
-    const { ride, setRide} = props;
-    setRide(
+  const setDroneType = (e) => {
+    const { booking, setBooking} = props;
+    setBooking(
       {
-        ...ride,
-        carType: e.target.value,
+        ...booking,
+        droneType: e.target.value,
       }
     );
   }
@@ -53,28 +53,28 @@ export default function FindSourceAndDestination(props) {
             autoComplete="Source"
             variant="standard"
             onChange={(e) => {setSource(e)}}
-            defaultValue={props.ride ? props.ride.source : ''}
+            defaultValue={props.booking ? props.booking.source : ''}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             id="destination"
             name="destination"
-            label="Car Destination"
+            label="Drone Destination"
             fullWidth
-            autoComplete="Car Type"
+            autoComplete="Drone Type"
             variant="standard"
             onChange={(e) => {setDestination(e)}}
-            defaultValue={props.ride ? props.ride.destination : ''}
+            defaultValue={props.booking ? props.booking.destination : ''}
           />
         </Grid>
         <Grid item xs={12}>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={props.ride ? props.ride.carType : ''}
-          label="Car Type"
-          onChange={setCarType}
+          value={props.booking ? props.booking.droneType : ''}
+          label="Drone Type"
+          onChange={setDroneType}
           autoWidth
           style={{width:'30%'}}
         >

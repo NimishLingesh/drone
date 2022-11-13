@@ -6,13 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {fetchCarListFromDB, fetchCarListFromDBForOwner} from '../../services/carService';
+import {fetchDroneListFromDB, fetchDroneListFromDBForOwner} from '../../services/droneService';
 import Radio from '@mui/material/Radio';
 import { AuthContext } from '../authenticaion/ProvideAuth';
 
 
-function createData(rideNumber, carNumber, date,  charge) {
-  return { rideNumber, carNumber, charge, date };
+function createData(bookingNumber, droneNumber, date,  charge) {
+  return { bookingNumber, droneNumber, charge, date };
 }
 
 const rows = [
@@ -30,52 +30,52 @@ const rows = [
 
 ];
 
-export default function CarList(props) {
+export default function DroneList(props) {
 
   const authContext = useContext(AuthContext);
-  const [carList, setCarList] = useState();
+  const [droneList, setDroneList] = useState();
   const [loading, setLoading] = useState(true);
   console.log(props); 
   useEffect(() => {
     if(props.persona === 'owner'){
       const {user} = authContext;
       const {userId} = user;
-      fetchCarListForOwner(userId);
+      fetchDroneListForOwner(userId);
     }
     else{
-      fetchCarListForCustomer(props.ride.carType);
+      fetchDroneListForCustomer(props.booking.droneType);
     }
   }, [])
 
-  const selectCar = (e) =>{
-    const {carId, carNumber, model, chargePerDay } = JSON.parse(e.target.value);
-    const {setRide, ride} = props;
-    setRide({
-      ...ride,
-      carId,
+  const selectDrone = (e) =>{
+    const {droneId, droneNumber, model, chargePerHour } = JSON.parse(e.target.value);
+    const {setBooking, booking} = props;
+    setBooking({
+      ...booking,
+      droneId,
       model, 
-      carNumber, 
-      chargePerDay,
+      droneNumber, 
+      chargePerHour,
     })
   }
 
-  const fetchCarListForCustomer = async (type) => {
-    const resp = await fetchCarListFromDB(type);
+  const fetchDroneListForCustomer = async (type) => {
+    const resp = await fetchDroneListFromDB(type);
     if(resp.status === 200){
       const rows = [];
       resp.data.payload.forEach(el => {
-        const { carNumber, carId, ownerId, type, model, chargePerDay, mileage} = el;
+        const { droneNumber, droneId, ownerId, type, model, chargePerHour, mileage} = el;
         rows.push({
-          carNumber,
-          carId,
+          droneNumber,
+          droneId,
           ownerId, 
           type, 
           model,
-          chargePerDay, 
+          chargePerHour, 
           mileage,
         })
       });
-      setCarList(rows);
+      setDroneList(rows);
 
       setLoading(false);
     }
@@ -84,24 +84,24 @@ export default function CarList(props) {
     }
 
   }
-  const fetchCarListForOwner = async (id) => {
-    const resp = await fetchCarListFromDBForOwner(id);
+  const fetchDroneListForOwner = async (id) => {
+    const resp = await fetchDroneListFromDBForOwner(id);
     if(resp.status === 200){
       const rows = [];
       console.log(resp.data.payload);
       resp.data.payload.forEach(el => {
-        const { carNumber, carId, ownerId, type, model, chargePerDay, mileage} = el;
+        const { droneNumber, droneId, ownerId, type, model, chargePerHour, mileage} = el;
         rows.push({
-          carNumber, 
-          carId,
+          droneNumber, 
+          droneId,
           ownerId, 
           type, 
           model,
-          chargePerDay, 
+          chargePerHour, 
           mileage,
         })
       });
-      setCarList(rows);
+      setDroneList(rows);
 
       setLoading(false);
     }
@@ -118,41 +118,41 @@ export default function CarList(props) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {props.ride ? (
+            {props.booking ? (
               <>
               <TableCell>Select</TableCell>
-              <TableCell >Car Number</TableCell>
+              <TableCell >Drone Number</TableCell>
               </>
             ) : (
-            <TableCell >Car Number</TableCell>
+            <TableCell >Drone Number</TableCell>
             )}
-            <TableCell align="right">Car Type</TableCell>
-            <TableCell align="right">Car Model</TableCell>
+            <TableCell align="right">Drone Type</TableCell>
+            <TableCell align="right">Drone Model</TableCell>
             <TableCell align="right">Charge Per Daye</TableCell>
             <TableCell align="right">Mileage</TableCell>
 
           </TableRow>
         </TableHead>
         <TableBody>
-          {carList.map((row) => {
+          {droneList.map((row) => {
             // console.log('ROW', row);
             return(
             <TableRow
-              key={row.carNumber}
+              key={row.droneNumber}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              {props.ride ? (
+              {props.booking ? (
                 <>
-                <Radio value={JSON.stringify(row)} checked={row.carId === props.ride.carId} onChange={selectCar}/>
-                <TableCell align="right">{row.carNumber}</TableCell>
+                <Radio value={JSON.stringify(row)} checked={row.droneId === props.booking.droneId} onChange={selectDrone}/>
+                <TableCell align="right">{row.droneNumber}</TableCell>
                 </>
               ): (
-                <TableCell align="right">{row.carNumber}</TableCell>
+                <TableCell align="right">{row.droneNumber}</TableCell>
 
               )}
               <TableCell align="right">{row.type}</TableCell>
               <TableCell align="right">{row.model}</TableCell>
-              <TableCell align="right">{row.chargePerDay}</TableCell>
+              <TableCell align="right">{row.chargePerHour}</TableCell>
               <TableCell align="right">{row.mileage}</TableCell>
 
 
