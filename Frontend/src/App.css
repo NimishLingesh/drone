@@ -38,9 +38,9 @@
 }
 
 .logoText {
-  color: #afc1d0;
+  color: white;
   font-size: 30px;
-  font-family: Roboto;
+  font-family: fantasy;
 }
 
 .nav {
@@ -51,7 +51,7 @@
 .inputFields {
   width: 350px;
   height: 40px;
-  border: #afc1d0;
+  border: #1c3f60;
   padding: 5;
   background-color: #afc1d0;
 }
@@ -62,7 +62,7 @@
   background-color: #1c3f60;
   color: #000;
   padding: 5;
-  color: #afc1d0;
+  color: #1c3f60;
 }
 
 /* template */
@@ -105,12 +105,12 @@
 }
 
 #classicformpage .top-nav-collapse {
-  background: #424f95 !important;
+  background: #1c3f60 !important;
 }
 
 @media (max-width: 768px) {
   #classicformpage .navbar:not(.top-nav-collapse) {
-    background: #424f95 !important;
+    background: #1c3f60 !important;
   }
 }
 

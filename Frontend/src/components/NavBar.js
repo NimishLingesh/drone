@@ -14,7 +14,7 @@ const NavBar = () => {
             <Navbar className="nav" expand="lg">
             <Container>
             <Navbar.Brand onClick={redirectToDashboard} type="button"> 
-                <span className="logoText">AV Rental</span>
+                <span className="logoText"><i class='fas fa-helicopter'></i>Drone-Verse</span>
             </Navbar.Brand>
             </Container>
             </Navbar>
