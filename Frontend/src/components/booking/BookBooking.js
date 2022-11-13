@@ -99,7 +99,7 @@ export default function BookBooking() {
       <Container component="main" maxWidth="m" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Booking Booking
+            Drone Booking
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -114,10 +114,10 @@ export default function BookBooking() {
               {!loading && (
                 <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Congratulations! You have booked the Drone
                 </Typography>
                 <Typography variant="subtitle1">
-                  Thank you for using RentalAV. Your Booking is booked. Have a safe journey
+                Thank you for your order.
                 </Typography>
               </React.Fragment>
               )}
@@ -138,7 +138,7 @@ export default function BookBooking() {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Book booking' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Drone booking' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
