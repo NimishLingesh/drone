@@ -41,7 +41,7 @@ export default function FindSourceAndDestination(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Select Source and Destination
+        Select Farm and Farmland
       </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12}>
