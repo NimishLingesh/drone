@@ -35,42 +35,113 @@ function Copyright(props) {
 
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
+    title: 'Basic',
+    price: '120/hour',
     walletUpgrade: 0,
     description: [
-      '100$ signup rewards',
-      'Valid for 3 months',
-      'Help center access',
-      'Email support',
+      'Pay on per hour basis',
+      'Payload Service',
+      'It includes pesticides, fertilizer, water and seed costs',
     ],
-    buttonText: 'Sign up for free',
+    buttonText: 'Buy',
     buttonVariant: 'contained',
   },
   {
+    title: 'Basic',
+    price: '100/hour',
+    walletUpgrade: 0,
+    description: [
+      'Pay on per hour basis',
+      'Data Collection Service',
+      'It includes livestock status and health of the crop',
+    ],
+    buttonText: 'Buy',
+    buttonVariant: 'contained',
+  },
+  {
+    title: 'Basic',
+    price: '150/hour',
+    walletUpgrade: 0,
+    description: [
+      'Pay on per hour basis',
+      'Surveillance as a Service',
+      'Provides recordings of daily surveillance',
+    ],
+    buttonText: 'Buy',
+    buttonVariant: 'contained',
+  },
+
+  {
     title: 'Pro',
-    price: '15',
+    price: '1000/day',
     walletUpgrade: 15,
     description: [
-      '100$ Signup rewards',
-      '100$ Addtional wallet rewards',
-      'Help center access',
-      'Priority email support',
+      'Pay on per day basis',
+      'Payload Service',
+      'It includes pesticides, fertilizer, water and seed costs',
     ],
-    buttonText: 'Get started',
+    buttonText: 'Buy',
     buttonVariant: 'outlined',
   },
   {
-    title: 'Enterprise',
-    price: '30',
+    title: 'Pro',
+    price: '650/day',
+    walletUpgrade: 15,
+    description: [
+      'Pay on per day basis',
+      'Data Collection Service',
+      'It includes livestock status and health of the crop',
+    ],
+    buttonText: 'Buy',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'Pro',
+    price: '1500/day',
+    walletUpgrade: 15,
+    description: [
+      'Pay on per day basis',
+      'Surveillance as a Service',
+      'Provides recordings of daily surveillance',
+    ],
+    buttonText: 'Buy',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'Premium',
+    price: '2000$/month',
     walletUpgrade: 30,
     description: [
-      '100$ Signup rewards',
-      '200$ Addtional wallet rewards',
-      'Help center access',
-      'Phone & email support',
+      'Pay on per month basis',
+      'Payload Service',
+      'It includes pesticides, fertilizer, water and seed costs',
     ],
-    buttonText: 'Get Started',
+    buttonText: 'Buy',
+    buttonVariant: 'outlined',
+  },
+
+  {
+    title: 'Premium',
+    price: '2500/month',
+    walletUpgrade: 30,
+    description: [
+      'Pay on per month basis',
+      'Data Collection Service',
+      'It includes livestock status and health of the crop',
+    ],
+    buttonText: 'Buy',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'Premium',
+    price: '3000/month',
+    walletUpgrade: 30,
+    description: [
+      'Pay on per month basis',
+      'Surveillance as a Service',
+      'Provides recordings of daily surveillance',
+    ],
+    buttonText: 'Buy',
     buttonVariant: 'outlined',
   },
 ];
@@ -206,11 +277,8 @@ function PricingContent() {
                       mb: 2,
                     }}
                   >
-                    <Typography component="h2" variant="h3" color="text.primary">
+                    <Typography component="h2" variant="h5" color="text.primary">
                       ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      /mo
                     </Typography>
                   </Box>
                   <ul>
@@ -228,6 +296,7 @@ function PricingContent() {
                 </CardContent>
                 <CardActions>
                   <Button fullWidth variant={tier.buttonVariant} onClick={()=>walletUpgradeHandler(tier.walletUpgrade)}>
+                    
                     {tier.buttonText}
                   </Button>
                 </CardActions>
