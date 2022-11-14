@@ -172,13 +172,13 @@ const DashboardContent = () => {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={7}>
+              <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 380,
                   }}
                 >
                   {/* <Chart /> */}
@@ -186,7 +186,7 @@ const DashboardContent = () => {
                   <BookBookingButton/>
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+              {/* Recent Deposits
               <Grid item xs={12} md={4} lg={5}>
                 <Paper
                   sx={{
@@ -198,7 +198,7 @@ const DashboardContent = () => {
                 >
                   <Wallet />
                 </Paper>
-              </Grid>
+              </Grid> */}
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>

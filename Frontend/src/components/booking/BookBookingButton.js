@@ -7,7 +7,7 @@ import {useHistory} from 'react-router-dom';
 
 const images = [
   {
-    url: 'https://images.unsplash.com/photo-1520870121499-7dddb6ccbcde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80',
+    url: 'https://images.unsplash.com/photo-1514041884614-65858e220493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80',
     title: 'Drone Booking',
     width: '100%',
   }
@@ -15,7 +15,7 @@ const images = [
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
-  height: 200,
+  height: 350,
   [theme.breakpoints.down('sm')]: {
     width: '100% !important', // Overbookings inline-style
     height: 100,
