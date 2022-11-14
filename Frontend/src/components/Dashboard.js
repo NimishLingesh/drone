@@ -50,7 +50,7 @@ const AppBar = styled(MuiAppBar, {
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   marginTop:'100px',
-  backgroundColor:'#afc1d0',
+  backgroundColor:'white',
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -122,6 +122,7 @@ const DashboardContent = () => {
             <IconButton
               edge="start"
               color="inherit"
+              
               aria-label="open drawer"
               onClick={toggleDrawer}
               sx={{

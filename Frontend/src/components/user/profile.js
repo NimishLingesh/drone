@@ -92,30 +92,27 @@ export default function Profile(props) {
   return (
       <React.Fragment>
         {!loading && (
-        <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
+        <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
          <Row>   
-        {/* <Col>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Col>
+        <Paper variant="outlined" sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}>
             <Card>
             <CardMedia
             component="img"
             // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-            image="https://www.scarymommy.com/wp-content/uploads/2019/11/michael-scott-quotes.jpg"
+            image="https://images.unsplash.com/photo-1517705185975-b3301eaa9c8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fGZhcm1lcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             alt="{post.imageLabel}"
           />
             </Card>
         </Paper>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-        <Wallet></Wallet>
-        </Paper>
-        </Col> */}
+        </Col>
         <Col>
         <br></br><br></br>
         <Typography variant="h6" gutterBottom>
         Personal Details
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={11} sm={6}>
           <TextField
             required
             id="firstName"
@@ -166,7 +163,7 @@ export default function Profile(props) {
           />
         </Grid>
         </Grid>
-        <br></br><br></br>
+        <br></br><br></br></Col></Row><Row><Col>
         <Typography variant="h6" gutterBottom>
         Address
       </Typography>
