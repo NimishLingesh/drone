@@ -98,7 +98,7 @@ export default function Signup() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://innovationatwork.ieee.org/wp-content/uploads/2018/07/iStock-829197466-1024x683.jpg)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1506947411487-a56738267384?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -116,12 +116,12 @@ export default function Signup() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign Up
-            </Typography>
+            <Box align='left'>
+                <Typography component="h1" variant="h4" >
+                  Sign in
+                </Typography>
+            </Box>
+
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <br></br>
             <Grid item xs={12}>
@@ -136,7 +136,7 @@ export default function Signup() {
                     />
                     <label 
                       class="form-check-label" for="customer">
-                      Customer
+                      Farmer
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -149,7 +149,7 @@ export default function Signup() {
                       onClick={()=>{setPersona('Owner')}}
                     />
                     <label class="form-check-label" for="droneOwner">
-                      Drone Owner
+                      Pilot
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -215,6 +215,8 @@ export default function Signup() {
               type="submit"
               fullWidth
               variant="contained"
+              style={{
+                backgroundColor: '#1c3f60'}}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up

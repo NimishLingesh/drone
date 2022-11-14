@@ -110,7 +110,7 @@ export default function Profile(props) {
         <br></br><br></br>
         <Typography variant="h6" gutterBottom>
         Personal Details
-      </Typography>
+      </Typography><br/><br/><br/>
       <Grid container spacing={3}>
         <Grid item xs={11} sm={6}>
           <TextField
