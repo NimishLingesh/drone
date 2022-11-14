@@ -1,5 +1,8 @@
 import  React, {useContext, useEffect, useState} from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -26,7 +29,6 @@ import {useHistory} from 'react-router-dom';
 import { fechInProgressBookings } from '../services/bookingService';
 import InProgressBookingList from './booking/InProgressBookingList';
 import BookBookingButton from './booking/BookBookingButton';
-
 
 function Copyright(props) {
   return (
@@ -104,6 +106,7 @@ const DashboardContent = () => {
   };
 
   console.log(authContext);
+  
   return (
     <>
     {(
@@ -128,15 +131,45 @@ const DashboardContent = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="#1c3f60"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Dashboard
-            </Typography>
+            
+            <ListItem button component={Link} to="/profile">
+                <ListItemIcon>
+                <Typography
+                  component="h1"
+                  color="black"
+                  noWrap
+                  sx={{ flexGrow: 1 }}
+                >
+                  <i class="fa fa-home"></i>Home
+                </Typography>
+                </ListItemIcon>
+            </ListItem>
+
+            <ListItem button component={Link} to="/profile">
+                <ListItemIcon>
+                <Typography
+                  component="h1"
+                  color="black"
+                  noWrap
+                  sx={{ flexGrow: 1 }}
+                >
+                  <i class="fa fa-phone"></i>Contact
+                </Typography>
+                </ListItemIcon>
+            </ListItem>
+
+            <ListItem button component={Link} to="/profile">
+                <ListItemIcon>
+                <Typography
+                  component="h1"
+                  color="black"
+                  noWrap
+                  sx={{ flexGrow: 1 }}
+                >
+                  <i class="fa fa-user"></i>Profile
+                </Typography>
+                </ListItemIcon>
+            </ListItem>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -186,20 +219,6 @@ const DashboardContent = () => {
                   <BookBookingButton/>
                 </Paper>
               </Grid>
-              {/* Recent Deposits
-              <Grid item xs={12} md={4} lg={5}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Wallet />
-                </Paper>
-              </Grid> */}
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <InProgressBookingList/>
