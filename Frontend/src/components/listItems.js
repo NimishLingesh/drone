@@ -22,18 +22,23 @@ export const mainListItems = (persona) => {
         </ListItemIcon>
         <ListItemText style={{color: 'Black'}} primary="Dashboard" />
       </ListItem>
+      
       <ListItem button component={Link} to="/profile">
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
               <ListItemText style={{color: 'Black'}} primary="Profile" />
           </ListItem>
+
+
       <ListItem button component={Link} to="/pricing">
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText style={{color: 'Black'}} primary="Payment Plan" />
       </ListItem>
+
+
       {(persona === 'owner' || persona === 'admin') && (
       <Link to={{
         pathname: '/BookingList',
@@ -48,6 +53,7 @@ export const mainListItems = (persona) => {
         </ListItem>
         </Link>
       )}
+      
       <Link to={{
       pathname: '/BookingList',
       state: {
