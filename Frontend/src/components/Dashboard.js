@@ -28,6 +28,7 @@ import {useHistory} from 'react-router-dom';
 import { fechInProgressBookings } from '../services/bookingService';
 import InProgressBookingList from './booking/InProgressBookingList';
 import BookBookingButton from './booking/BookBookingButton';
+import { Progress, Space } from 'antd';
 
 function Copyright(props) {
   return (
@@ -63,6 +64,7 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -242,9 +244,51 @@ const DashboardContent = () => {
                       </Paper>
                     </Grid>
                )}
+
+              {(user.persona === 'admin' )&& 
+                    (<Grid item xs={12} md={6} lg={6}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Number of drone by status</h5><br/>
+                        <center>
+                          <Space wrap>
+                            <Progress type="circle" percent={100} strokeColor='purple' width={110} format={(percent) => `${percent}`} />
+                            <Progress type="circle" percent={70} strokeColor='green' width={110} format={(percent) => `${percent} Completed`} />
+                            <Progress type="circle" percent={30} width={110} format={(percent) => `${percent} In-progress`} />
+                          </Space>
+                        </center>
+                      </Paper>
+                    </Grid>
+               )}
+
+                {(user.persona === 'admin' )&& 
+                    (<Grid item xs={12} md={6} lg={6}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Number of drone by Type</h5><br/>
+                        < div style={{ width: 400 }}>
+                          <Progress percent={100} size="small" strokeColor='purple'format={() => `Total Drone`} />
+                          <Progress percent={50} size="small"strokeColor='red' format={() => `Payload Service `} />
+                          <Progress percent={25} size="small"strokeColor='blue' format={() => `Data Collection`}/>
+                          <Progress percent={25} size="small" strokeColor='green' format={() => `Survilience`}/>
+                        </div>
+                      </Paper>
+                    </Grid>
+               )}
               
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Services in progress</h5><br/>
                   <InProgressBookingList/>
                 </Paper>
               </Grid>
