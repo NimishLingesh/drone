@@ -16,6 +16,7 @@ import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import TodayIcon from '@mui/icons-material/Today';
 
 import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -64,6 +65,36 @@ export const mainListItems = (persona) => {
         <ListItemText style={{color: 'Black'}} primary="Book Drone Service" />
       </ListItem>
       </Link>
+      )}
+
+      {(persona === 'owner') && (
+        <Link to={{
+          pathname: '/Booking',
+          state: {
+            persona: 'owner'
+          }}}>
+          <ListItem button >
+            <ListItemIcon>
+              <TodayIcon/>
+            </ListItemIcon>
+            <ListItemText style={{color: 'Black'}} primary="Schedule Booking" />
+          </ListItem>
+        </Link>
+      )}
+
+      {(persona === 'owner') && (
+        <Link to={{
+          pathname: '/BookingList',
+          state: {
+            persona: 'owner'
+          }}}>
+          <ListItem button >
+            <ListItemIcon>
+              <LibraryBooksIcon/>
+            </ListItemIcon>
+            <ListItemText style={{color: 'Black'}} primary="View Bookings" />
+          </ListItem>
+        </Link>
       )}
 
       {(persona === 'admin') && (

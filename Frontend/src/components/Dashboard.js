@@ -11,20 +11,19 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Badge from '@mui/material/Badge';
+import CallIcon from '@mui/icons-material/Call';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Wallet from './user/wallet';
 import { AuthContext }from './authenticaion/ProvideAuth';
-import { SettingsInputSvideoRounded } from '@mui/icons-material';
-import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
 import { fechInProgressBookings } from '../services/bookingService';
 import InProgressBookingList from './booking/InProgressBookingList';
@@ -132,8 +131,29 @@ const DashboardContent = () => {
             >
               <MenuIcon />
             </IconButton>
-            
+
+            <ListItem button  component={Link} to="/Dashboard">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText style={{color: 'Black'}} primary="Home" />
+            </ListItem>
+
+            <ListItem button component={Link} to="#">
+              <ListItemIcon>
+                <CallIcon />
+              </ListItemIcon>
+              <ListItemText style={{color: 'Black'}} primary="Contact" />
+            </ListItem>
+
             <ListItem button component={Link} to="/profile">
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText style={{color: 'Black'}} primary="Profile" />
+            </ListItem>
+      
+      {/* <ListItem button component={Link} to="/profile">
                 <ListItemIcon>
                 <Typography
                   component="h1"
@@ -170,7 +190,7 @@ const DashboardContent = () => {
                   <i class="fa fa-user"></i>Profile
                 </Typography>
                 </ListItemIcon>
-            </ListItem>
+            </ListItem> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
