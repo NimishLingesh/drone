@@ -5,12 +5,14 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
+import PaidIcon from '@mui/icons-material/Paid';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+
 import { Redirect } from 'react-router-dom';
-import ListItemButton from '@mui/material/ListItemButton';
 import { Link } from "react-router-dom";
 export const mainListItems = (persona) => {
   console.log(persona);
@@ -25,21 +27,40 @@ export const mainListItems = (persona) => {
       
       <ListItem button component={Link} to="/profile">
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <AssignmentIndIcon />
         </ListItemIcon>
               <ListItemText style={{color: 'Black'}} primary="Profile" />
           </ListItem>
 
 
-      <ListItem button component={Link} to="/pricing">
+      <Link to={{
+      pathname: '/pricing',
+      state: {
+        persona: 'customer'
+      }}}>
+          <ListItem button>
+            <ListItemIcon>
+              <PaidIcon />
+            </ListItemIcon>
+            <ListItemText style={{color: 'Black'}} primary="Payment Plans" />
+          </ListItem>
+      </Link>
+
+      <Link to={{
+      pathname: '/searchDrone',
+      state: {
+        persona: 'customer'
+      }}}>
+      <ListItem button >
         <ListItemIcon>
-          <PeopleIcon />
+          <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Payment Plan" />
+        <ListItemText style={{color: 'Black'}} primary="Book Drone Service" />
       </ListItem>
+      </Link>
 
 
-      {(persona === 'owner' || persona === 'admin') && (
+      {(persona === 'admin') && (
       <Link to={{
         pathname: '/BookingList',
         state: {
@@ -61,14 +82,27 @@ export const mainListItems = (persona) => {
       }}}>
       <ListItem button >
         <ListItemIcon>
+          <LibraryBooksIcon/>
+        </ListItemIcon>
+        <ListItemText style={{color: 'Black'}} primary="All Bookings" />
+      </ListItem>
+      </Link>
+
+      <Link to={{
+      pathname: '',
+      state: {
+        persona: 'customer'
+      }}}>
+      <ListItem button >
+        <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Your Bookings" />
+        <ListItemText style={{color: 'Black'}} primary="Service Report" />
       </ListItem>
       </Link>
       
       
-      {(persona === 'owner' || persona === 'admin' )&& (
+      {(persona === 'admin' )&& (
         <ListItem button component={Link} to='/AddDrone'>
         <ListItemIcon>
           <LayersIcon />
@@ -76,7 +110,7 @@ export const mainListItems = (persona) => {
         <ListItemText style={{color: 'Black'}} primary="Add a Drone" />
       </ListItem>
       )}
-      {(persona === 'owner' || persona === 'admin') && (
+      {(persona === 'admin') && (
         <ListItem button component={Link} to='/DroneList'>
         <ListItemIcon>
           <LayersIcon />

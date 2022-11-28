@@ -165,9 +165,10 @@ export const getUserBookings = (req, res) => {
             where ownerId = 1`;
         }
         else if(persona === 'customer'){
-            query = `select droneNumber, r.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, r.chargePerHour 
-            from booking as r INNER JOIN drone as c on c.droneId = r.droneId 
-            where customerId = 1`;
+            query = `select droneNumber, booking.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, booking.chargePerHour 
+            from user as u INNER JOIN booking on customerId = u.userId 
+            INNER JOIN drone as c on c.droneId = booking.droneId 
+            where customerId = ?`;
         }
 
         con.query(query, [userId], (err, result)=>{
