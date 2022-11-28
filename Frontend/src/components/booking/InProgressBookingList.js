@@ -104,7 +104,8 @@ const InProgressBookingList = props => {
                 <TableRow>
                     {(user.persona === 'admin' )&& (<TableCell >User Id</TableCell>)}
                     {(user.persona === 'admin' )&& (<TableCell align="right" >User Name</TableCell>)}
-                    <TableCell align="right">Source</TableCell>
+                    {(user.persona === 'admin' )&& (<TableCell align="right" >Source</TableCell>)}
+                    {(user.persona === 'customer' )&& (<TableCell >Source</TableCell>)}
                     <TableCell align="right">Destination</TableCell>
                     <TableCell align="right">Drone Number</TableCell>
                     <TableCell align="right">Status</TableCell>
@@ -119,7 +120,8 @@ const InProgressBookingList = props => {
                     >
                     {(user.persona === 'admin' )&& (<TableCell component="th" scope="row">{row.userId}</TableCell>)}
                     {(user.persona === 'admin' )&& (<TableCell align="right"> {row.fname} </TableCell>)}
-                    <TableCell align="right"> {row.source} </TableCell>
+                    {(user.persona === 'admin' )&& (<TableCell align="right"> {row.source} </TableCell>)}
+                    {(user.persona === 'customer' )&& (<TableCell component="th" scope="row"> {row.source} </TableCell>)}
                     <TableCell align="right">{row.destination}</TableCell>
                     <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>

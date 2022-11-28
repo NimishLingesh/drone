@@ -23,6 +23,7 @@ export default function BookingList() {
 
     const {persona } = location.state;
     const authContext = useContext(AuthContext);
+    const {user} = authContext;
     const [bookingList, setBookingList] = useState();
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -68,7 +69,7 @@ export default function BookingList() {
             <TableHead>
             <TableRow>
                 <TableCell>Booking Number</TableCell>
-                <TableCell>Source</TableCell>
+                <TableCell align="right">Source</TableCell>
                 <TableCell align="right">Destination</TableCell>
                 <TableCell align="right">Charge Per Daye</TableCell>
                 <TableCell align="right">Drone Number</TableCell>
