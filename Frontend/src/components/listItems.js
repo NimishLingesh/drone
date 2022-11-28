@@ -33,18 +33,19 @@ export const mainListItems = (persona) => {
           </ListItem>
 
 
-      <Link to={{
-      pathname: '/pricing',
-      state: {
-        persona: 'customer'
-      }}}>
-          <ListItem button>
-            <ListItemIcon>
-              <PaidIcon />
-            </ListItemIcon>
-            <ListItemText style={{color: 'Black'}} primary="Payment Plans" />
-          </ListItem>
-      </Link>
+      {(persona === 'customer' )&& (<Link to={{
+        pathname: '/pricing',
+        state: {
+          persona: 'customer'
+        }}}>
+            <ListItem button>
+              <ListItemIcon>
+                <PaidIcon />
+              </ListItemIcon>
+              <ListItemText style={{color: 'Black'}} primary="Payment Plans" />
+            </ListItem>
+        </Link>
+      )}
 
       <Link to={{
       pathname: '/searchDrone',
@@ -110,6 +111,7 @@ export const mainListItems = (persona) => {
         <ListItemText style={{color: 'Black'}} primary="Add a Drone" />
       </ListItem>
       )}
+
       {(persona === 'admin') && (
         <ListItem button component={Link} to='/DroneList'>
         <ListItemIcon>

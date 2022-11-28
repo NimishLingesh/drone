@@ -152,19 +152,6 @@ export default function Signup() {
                       Pilot
                     </label>
                   </div>
-                  <div class="form-check form-check-inline">
-                    <input 
-                      checked={persona === 'Admin'} 
-                      class="form-check-input" 
-                      type="radio" 
-                      name="admin" 
-                      id="admin"
-                      onClick={()=>{setPersona('Admin')}}  
-                    />
-                    <label class="form-check-label" for="admin">
-                      Admin
-                    </label>
-                  </div>
               </Grid>
               <br></br>
             <Grid container spacing={2}>

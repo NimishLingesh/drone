@@ -37,7 +37,6 @@ const InProgressBookingList = props => {
     const [loading, setLoading] = useState(true);
 
 
-
     useEffect(() => {
         getInProgressBookings();
     },[])
@@ -103,7 +102,9 @@ const InProgressBookingList = props => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell>Source</TableCell>
+                    {(user.persona === 'admin' )&& (<TableCell >User Id</TableCell>)}
+                    {(user.persona === 'admin' )&& (<TableCell align="right" >User Name</TableCell>)}
+                    <TableCell align="right">Source</TableCell>
                     <TableCell align="right">Destination</TableCell>
                     <TableCell align="right">Drone Number</TableCell>
                     <TableCell align="right">Status</TableCell>
@@ -116,9 +117,9 @@ const InProgressBookingList = props => {
                     key={row.bookingId}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                    <TableCell component="th" scope="row">
-                        {row.source}
-                    </TableCell>
+                    {(user.persona === 'admin' )&& (<TableCell component="th" scope="row">{row.userId}</TableCell>)}
+                    {(user.persona === 'admin' )&& (<TableCell align="right"> {row.fname} </TableCell>)}
+                    <TableCell align="right"> {row.source} </TableCell>
                     <TableCell align="right">{row.destination}</TableCell>
                     <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>

@@ -133,21 +133,42 @@ export const getInProgressBooking = (req, res) => {
         const userId = req.query.userId;
         const persona = req.query.persona;
         console.log(persona);
-        const inProgressBookingsQuery = `select droneNumber, drone.chargePerHour, 
-        booking.droneId, bookingId, source, destination, status, customerId 
-                from booking INNER JOIN drone on drone.droneId = booking.droneId 
-                inner join user on booking.customerId = user.userId 
-                where customerId = ? and status = 'In-Progress' and persona = ?;`;
-        con.query(inProgressBookingsQuery, [userId, persona], (err, result)=>{
-            if(err){
-                console.log(err);
-                sendInternalServerError(res);
-            }
-            else{
-                console.log('Bookings', result);
-                sendCustomSuccess(res, result); 
-            }
-        })
+        let inProgressBookingsQuery;
+
+        if(persona === 'customer'){
+            inProgressBookingsQuery = `select droneNumber, drone.chargePerHour, 
+            booking.droneId, bookingId, source, destination, status, customerId 
+                    from booking INNER JOIN drone on drone.droneId = booking.droneId 
+                    inner join user on booking.customerId = user.userId 
+                    where customerId = ? and status = 'In-Progress' and persona = ?;`;
+                    con.query(inProgressBookingsQuery, [userId, persona], (err, result)=>{
+                        if(err){
+                            console.log(err);
+                            sendInternalServerError(res);
+                        }
+                        else{
+                            console.log('Bookings', result);
+                            sendCustomSuccess(res, result); 
+                        }
+                    })
+        }
+        else if(persona === 'admin'){
+            inProgressBookingsQuery = `select user.userId , user.userId, user.fname, user.lname, droneNumber, drone.chargePerHour,
+            booking.droneId, bookingId, source, destination, status, customerId 
+                    from booking INNER JOIN drone on drone.droneId = booking.droneId 
+                    inner join user on booking.customerId = user.userId 
+                    where status = 'In-Progress';`;
+                    con.query(inProgressBookingsQuery, [], (err, result)=>{
+                        if(err){
+                            console.log(err);
+                            sendInternalServerError(res);
+                        }
+                        else{
+                            console.log('Bookings', result);
+                            sendCustomSuccess(res, result); 
+                        }
+                    })
+        }
     }
     catch(e){
         sendInternalServerError(e);
