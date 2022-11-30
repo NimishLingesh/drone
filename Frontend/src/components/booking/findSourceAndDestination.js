@@ -1,4 +1,5 @@
 import React, {useState}  from 'react';
+import { Calendar } from 'antd';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -37,6 +38,16 @@ export default function FindSourceAndDestination(props) {
       }
     );
   }
+  const bookingCalender = () => {
+    const onPanelChange = (value, mode) => {
+      console.log(value.format('YYYY-MM-DD'), mode);
+    };
+    return (
+      <div className="site-calendar-demo-card">
+        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+      </div>
+    );
+  };
 
   return (
     <React.Fragment>
@@ -68,6 +79,25 @@ export default function FindSourceAndDestination(props) {
             defaultValue={props.booking ? props.booking.destination : ''}
           />
         </Grid>
+        <div>
+          
+        </div>
+        <center>
+          <Grid item xs={4}>
+          
+          <Calendar
+            fullscreen={false} 
+            onPanelChange={(e) => {bookingCalender(e)}}
+            id="calender"
+            name="calnder"
+            label="calender"
+            variant="standard"
+            // onChange={(e) => {bookingCalender(e)}}
+            defaultValue={props.booking ? props.booking.destination : ''}
+          />
+          </Grid>
+        </center>
+
         <Grid item xs={12}>
         <Select
           labelId="demo-simple-select-label"
