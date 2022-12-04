@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 import ProvideAuth from './authenticaion/ProvideAuth';
 import DroneList from './drone/DroneList';
 import BookingList from './booking/BookingList';
+import AddLand from './user/addLand'
 import PrivateRoute from './authenticaion/PrivateRoute';
 import AdminAnalysis from './integration/AdminAnalysis';
 import { BACKEND_URL } from '../services/constants';
@@ -74,6 +75,11 @@ const Main = () => {
                          <PrivateRoute path="/profile">
                             <Profile></Profile>
                         </PrivateRoute>
+
+                        <PrivateRoute path="/addLand">
+                            <AddLand></AddLand>
+                        </PrivateRoute>
+
                         <PrivateRoute path="/pricing">
                             <Pricing></Pricing>
                         </PrivateRoute>
