@@ -8,30 +8,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { AuthContext } from '../authenticaion/ProvideAuth';
 import {fechInProgressBookings} from '../../services/bookingService';
+import {deleteBooking} from '../../services/bookingService';
 import { Button} from 'react-bootstrap';
 
 // function createData(bookingNumber, droneNumber, date,  charge) {
 //   return { bookingNumber, droneNumber, charge, date };
 // }
 
-// const rows = [
-//   createData('1', '8CPA850', '11/10/2021', 16.0 ),
-//   createData('2', '7YPN393', '11/09/2021', 29.0),
-//   createData('3', '8AMF954', '11/09/2021', 56.0),
-//   createData('4', '8AMF954', '10/19/2021', 76.0),
-//   createData('5', '8AMF954', '10/09/2021', 76.0),
-//   createData('6', '8AMF954', '10/06/2021', 146.0),
-//   createData('7', '7MWL676', '09/30/2021', 122.0),
-//   createData('8', '7MWL676', '09/29/2021', 102.0),
-//   createData('9', '8AMF954', '09/19/2021', 56.0),
-//   createData('10','8AMF954', '05/09/2021', 86.0),
-//   createData('11', '8AMF954', '05/09/2021', 86.0),
-
-// ];
 
 const InProgressBookingList = props => {
-
-
     const authContext = useContext(AuthContext);
     const {user} = authContext;
     const [inProgressBookings, setInProgressBookings] = useState([]);
@@ -56,13 +41,23 @@ const InProgressBookingList = props => {
     }
 
     function deleteUser(id) {
-        // setUsers(users.map(x => {
-        //     if (x.id === id) { x.isDeleting = true; }
-        //     return x;
-        // }));
-        // userService.delete(id).then(() => {
-        //     setUsers(users => users.filter(x => x.id !== id));
-        // });
+        setLoading(true);
+        const bookingId = id;
+        const persona = "customer";
+        const status = deleteBooking(bookingId, persona);
+        console.log("response status", status)
+        alert("Successfully deleted Booking Id", bookingId)
+        console.log("Logging delete for booking Id", bookingId)
+        getInProgressBookings()
+        // if(Number(status) == 200){
+        //     // getInProgressBookings();
+        //     alert("Successfully deleted Booking Id", bookingId)
+        //     console.log("Logging delete for booking Id", bookingId)
+        //     // setLoading(false);
+        // }
+        // else{
+        //     console.log("Error");
+        // }
     }
 
     //   const selectBooking = (e) =>{
@@ -140,10 +135,7 @@ const InProgressBookingList = props => {
                     <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>
                     <Button variant="contained" color='blue'>Edit</Button>
-                    {/* <Button variant="outlined" color="error">
-                        DELETE
-                    </Button> */}
-                    <button onClick={() => deleteUser(1)} className="btn btn-sm btn-danger btn-delete-user">
+                    <button onClick={() => deleteUser(row.bookingId)} className="btn btn-sm btn-danger btn-delete-user">
                         {user.isDeleting 
                             ? <span className="spinner-border spinner-border-sm"></span>
                             : <span>Delete</span>
