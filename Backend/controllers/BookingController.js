@@ -206,3 +206,24 @@ export const getUserBookings = (req, res) => {
         sendInternalServerError(e);
     }
 }
+
+export const deleteBooking = (req, res) => {
+    try{
+        const bookingId = req.query.bookingId;
+        const persona = req.query.persona;
+        let query;
+        query = `DELETE FROM drone_verse.booking WHERE (bookingId = '${bookingId}');`;
+        con.query(query, [bookingId], (err, result)=>{
+            if(err){
+                console.log(err);
+                sendInternalServerError(res);
+            }
+            else{
+                sendCustomSuccess(res, result); 
+            }
+        })
+    }
+    catch(e){
+        sendInternalServerError(e);
+    }
+}

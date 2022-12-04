@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { AuthContext } from '../authenticaion/ProvideAuth';
 import {fechInProgressBookings} from '../../services/bookingService';
+import { Button} from 'react-bootstrap';
 
 // function createData(bookingNumber, droneNumber, date,  charge) {
 //   return { bookingNumber, droneNumber, charge, date };
@@ -52,6 +53,16 @@ const InProgressBookingList = props => {
         else{
             console.log(resp.data.message);
         }
+    }
+
+    function deleteUser(id) {
+        // setUsers(users.map(x => {
+        //     if (x.id === id) { x.isDeleting = true; }
+        //     return x;
+        // }));
+        // userService.delete(id).then(() => {
+        //     setUsers(users => users.filter(x => x.id !== id));
+        // });
     }
 
     //   const selectBooking = (e) =>{
@@ -109,7 +120,8 @@ const InProgressBookingList = props => {
                     <TableCell align="right">Destination</TableCell>
                     <TableCell align="right">Drone Number</TableCell>
                     <TableCell align="right">Status</TableCell>
-    
+                    {/* <TableCell align="right">Edit</TableCell>
+                    <TableCell align="right">Delete</TableCell> */}
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -125,8 +137,17 @@ const InProgressBookingList = props => {
                     <TableCell align="right">{row.destination}</TableCell>
                     <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>
-    
-    
+                    <Button variant="contained" color='blue'>Edit</Button>
+                    {/* <Button variant="outlined" color="error">
+                        DELETE
+                    </Button> */}
+                    <button onClick={() => deleteUser(1)} className="btn btn-sm btn-danger btn-delete-user">
+                        {user.isDeleting 
+                            ? <span className="spinner-border spinner-border-sm"></span>
+                            : <span>Delete</span>
+                        }
+                    </button>
+                        
                     </TableRow>
                 ))}
                 </TableBody>
