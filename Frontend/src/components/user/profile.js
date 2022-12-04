@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
+import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -14,6 +15,9 @@ import ProvideAuth, { AuthContext } from '../authenticaion/ProvideAuth';
 import Button from '@mui/material/Button';
 import {updateUserProfile, getUserDetails} from '../../services/userService';
 import {useHistory} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import ReactRoundedImage from "react-rounded-image";
+
 
 export default function Profile(props) {  
   const history = useHistory();
@@ -23,6 +27,7 @@ export default function Profile(props) {
   const authContext = useContext(AuthContext);
   const [userId, setUserId] = useState(authContext.user.userId);
   const [user, setUser] = useState();
+  
 
 
   useEffect(()=>{
@@ -95,21 +100,32 @@ export default function Profile(props) {
         <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
          <Row>   
         <Col>
-        <Paper variant="outlined" sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}>
-            <Card>
-            <CardMedia
-            component="img"
-            // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-            image="https://images.unsplash.com/photo-1517705185975-b3301eaa9c8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fGZhcm1lcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-            alt="{post.imageLabel}"
+            <br/><br/><br/>
+            <ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
+            image="https://media.istockphoto.com/id/1326518001/photo/happy-female-farmer-holding-a-wood-box-containing-fresh-vegetables.jpg?b=1&s=170667a&w=0&k=20&c=jHYrjrRjNoXxbR50k5KtMTqXWgKhJSaWRtX3pgnIQiM="
+            roundedColor="tranparent"
+            imageWidth="250"
+            imageHeight="250"
+            roundedSize="13"
+            hoverColor="#1c3f60"
           />
-            </Card>
-        </Paper>
+
+          <br/><br/>
+          
+          {(user.persona === 'owner') && (<CardMedia
+              component="img"
+              imageWidth="250"
+              imageHeight="250"
+              // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+              image="https://executiveflyers.com/wp-content/uploads/2022/04/What-Does-a-Pilots-License-Look-Like-Student-Sport-Recreational-Private-Commercial-Airline.jpg"          roundedColor="tranparent"
+              alt="{post.imageLabel}"
+            />)}
+          
         </Col>
         <Col>
         <br></br><br></br>
         <Typography variant="h6" gutterBottom>
-        Personal Details
+        Personal information
       </Typography><br/><br/><br/>
       <Grid container spacing={3}>
         <Grid item xs={11} sm={6}>
@@ -162,10 +178,99 @@ export default function Profile(props) {
             defaultValue={user.email}
           />
         </Grid>
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="address1"
+            name="address1"
+            label="Address line 1"
+            fullWidth
+            autoComplete="shipping address-line1"
+            variant="standard"
+            defaultValue={user.address}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="City"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+            defaultValue={user.city}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="address1"
+            name="address1"
+            label="Address line 1"
+            fullWidth
+            autoComplete="shipping address-line1"
+            variant="standard"
+            defaultValue={user.address}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+            id="state"
+            name="state"
+            label="State/Province/Region"
+            fullWidth
+            variant="standard"
+            defaultValue={user.state}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+             required
+             id="zip"
+             name="zip"
+             label="Zip / Postal code"
+             fullWidth
+             autoComplete="shipping postal-code"
+             variant="standard"
+             defaultValue={user.zip}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Country"
+            fullWidth
+            autoComplete="shipping country"
+            variant="standard"
+            defaultValue={user.country}
+          />
+        </Grid>)}
+
+        {(user.persona === 'owner') && (<Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={updateUserData}
+              >
+                Update Details
+        </Button>)}
+
         </Grid>
-        <br></br><br></br></Col></Row><Row><Col>
+        <br></br><br></br></Col></Row>
+        {(user.persona === 'customer') && (<Row><Col>
+        <br/><br/>
         <Typography variant="h6" gutterBottom>
-        Address
+        Personal Address<br/><br/>
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -251,9 +356,60 @@ export default function Profile(props) {
                 onClick={updateUserData}
               >
                 Update Details
-              </Button>
+        </Button>
       </Grid>
-      </Col></Row>
+      </Col>
+      <Col>
+      <Grid container>
+        <Paper variant="outlined" sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}>
+            <Card>
+              <CardMedia
+              component="img"
+              // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+              image="https://www.marianfarmsbiodynamic.com/wp-content/uploads/2021/04/Current-Cert-2020-1-796x1024.jpg"
+              alt="{post.imageLabel}"
+            />
+            <h6>Lisence</h6>
+            </Card>
+        </Paper>
+      </Grid>
+      </Col></Row>)}
+      {(user.persona === 'customer') && (<Row>
+        <Col>
+          <br/><br/>
+          <Typography variant="h6" gutterBottom>
+            Farmer Plots<br/><br/>
+          </Typography>
+
+
+          <div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+              <CardMedia
+              component="img"
+              // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+              image="https://images.unsplash.com/photo-1501430654243-c934cec2e1c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hlYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                            alt="{post.imageLabel}"
+            />
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h6>Wheat field</h6>
+		    					<p><span>4000 Sq.ft.</span></p>
+    					</div>
+    				</div>
+    			</div>
+          <ListItem button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+              component={Link} to="/addLand">
+                <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Add Plot
+              </Button>
+          </ListItem>
+
+        </Col>
+      </Row>)}
       </Container>
     )}
     </React.Fragment>

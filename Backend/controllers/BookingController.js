@@ -34,7 +34,8 @@ export const addBooking = (req, res) => {
             destination, 
             bookingDate, 
             chargePerHour, 
-            status) VALUES (NULL, ?, ?,?,?,?,?,?)
+            pilotid,
+            status) VALUES (NULL, ?, ?,?,?,?,?,2,?)
         `;
 
         const getLastInerstedIdQuery = `SELECT LAST_INSERT_ID();`;
@@ -152,13 +153,14 @@ export const getInProgressBooking = (req, res) => {
                         }
                     })
         }
+
         else if(persona === 'admin'){
             inProgressBookingsQuery = `select user.userId , user.userId, user.fname, user.lname, droneNumber, drone.chargePerHour,
             booking.droneId, bookingId, source, destination, status, customerId 
                     from booking INNER JOIN drone on drone.droneId = booking.droneId 
                     inner join user on booking.customerId = user.userId 
                     where status = 'In-Progress';`;
-                    con.query(inProgressBookingsQuery, [], (err, result)=>{
+                    con.query(inProgressBookingsQuery, [userId], (err, result)=>{
                         if(err){
                             console.log(err);
                             sendInternalServerError(res);
@@ -169,6 +171,26 @@ export const getInProgressBooking = (req, res) => {
                         }
                     })
         }
+
+        else if(persona === 'owner'){
+            inProgressBookingsQuery = `select user.userId , pilot.userid, user.fname, user.lname, drone.chargePerHour,
+            booking.droneId, booking.bookingId, source, destination, status, customerId 
+                    from booking INNER JOIN drone on drone.droneId = booking.droneId 
+                    inner join user on booking.customerId = user.userId 
+                    inner join pilot on booking.pilotid = pilot.userid
+                    where status = 'In-Progress' and pilot.userid = ?;`;
+                    con.query(inProgressBookingsQuery, [userId], (err, result)=>{
+                        if(err){
+                            console.log(err);
+                            sendInternalServerError(res);
+                        }
+                        else{
+                            console.log('Bookings', result);
+                            sendCustomSuccess(res, result); 
+                        }
+                    })
+        }
+
     }
     catch(e){
         sendInternalServerError(e);
@@ -183,7 +205,11 @@ export const getUserBookings = (req, res) => {
         if(persona === 'owner'){
             query = `select droneNumber, r.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, r.chargePerHour 
             from booking as r INNER JOIN drone as c on c.droneId = r.droneId 
-            where ownerId = 1`;
+            where r.pilotid=?`;
+        }
+        else if(persona === 'admin'){
+            query = `select droneNumber, r.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, r.chargePerHour 
+            from booking as r INNER JOIN drone as c on c.droneId = r.droneId`;
         }
         else if(persona === 'customer'){
             query = `select droneNumber, booking.droneId, c.chargePerHour,bookingId, source, destination, status, customerId, booking.chargePerHour 

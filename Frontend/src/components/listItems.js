@@ -35,8 +35,8 @@ export const mainListItems = (persona) => {
         <ListItemIcon>
           <AssignmentIndIcon />
         </ListItemIcon>
-              <ListItemText style={{color: 'Black'}} primary="Profile" />
-          </ListItem>
+        <ListItemText style={{color: 'Black'}} primary="Profile" />
+      </ListItem>
 
 
       {(persona === 'customer' )&& (<Link to={{
@@ -65,21 +65,6 @@ export const mainListItems = (persona) => {
         <ListItemText style={{color: 'Black'}} primary="Book Drone Service" />
       </ListItem>
       </Link>
-      )}
-
-      {(persona === 'owner') && (
-        <Link to={{
-          pathname: '/Booking',
-          state: {
-            persona: 'owner'
-          }}}>
-          <ListItem button >
-            <ListItemIcon>
-              <TodayIcon/>
-            </ListItemIcon>
-            <ListItemText style={{color: 'Black'}} primary="Schedule Booking" />
-          </ListItem>
-        </Link>
       )}
 
       {(persona === 'owner') && (
@@ -158,17 +143,8 @@ export const mainListItems = (persona) => {
       </ListItem>
       )}
 
-      {(persona === 'admin' )&& (
-        <ListItem button component={Link} to='/DroneManagement'>
-        <ListItemIcon>
-          <BorderColorIcon />
-        </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Drone Management" />
-      </ListItem>
-      )}
-
       {(persona === 'admin') && (
-        <ListItem button component={Link} to='/DroneList'>
+        <ListItem button component={Link} to='/Dashboard'>
         <ListItemIcon>
           <ListAltIcon />
         </ListItemIcon>

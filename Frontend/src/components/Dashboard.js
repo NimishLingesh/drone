@@ -15,6 +15,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Badge from '@mui/material/Badge';
+import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import CallIcon from '@mui/icons-material/Call';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -155,44 +156,6 @@ const DashboardContent = () => {
               <ListItemText style={{color: 'Black'}} primary="Profile" />
             </ListItem>
       
-      {/* <ListItem button component={Link} to="/profile">
-                <ListItemIcon>
-                <Typography
-                  component="h1"
-                  color="black"
-                  noWrap
-                  sx={{ flexGrow: 1 }}
-                >
-                  <i class="fa fa-home"></i>Home
-                </Typography>
-                </ListItemIcon>
-            </ListItem>
-
-            <ListItem button component={Link} to="/profile">
-                <ListItemIcon>
-                <Typography
-                  component="h1"
-                  color="black"
-                  noWrap
-                  sx={{ flexGrow: 1 }}
-                >
-                  <i class="fa fa-phone"></i>Contact
-                </Typography>
-                </ListItemIcon>
-            </ListItem>
-
-            <ListItem button component={Link} to="/profile">
-                <ListItemIcon>
-                <Typography
-                  component="h1"
-                  color="black"
-                  noWrap
-                  sx={{ flexGrow: 1 }}
-                >
-                  <i class="fa fa-user"></i>Profile
-                </Typography>
-                </ListItemIcon>
-            </ListItem> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -257,15 +220,15 @@ const DashboardContent = () => {
                         <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Number of drone by status</h5><br/>
                         <center>
                           <Space wrap>
-                            <Progress type="circle" percent={100} strokeColor='purple' width={110} format={(percent) => `${percent}`} />
-                            <Progress type="circle" percent={70} strokeColor='green' width={110} format={(percent) => `${percent} Completed`} />
-                            <Progress type="circle" percent={30} width={110} format={(percent) => `${percent} In-progress`} />
+                            <Progress type="circle" percent={100} strokeColor='purple' width={110} format={(percent) => `8`} />
+                            <Progress type="circle" percent={70} strokeColor='green' width={110} format={(percent) => `3 Completed`} />
+                            <Progress type="circle" percent={30} width={110} format={(percent) => `5 In-progress`} />
                           </Space>
                         </center>
                       </Paper>
                     </Grid>
                )}
-
+               
                 {(user.persona === 'admin' )&& 
                     (<Grid item xs={12} md={6} lg={6}>
                       <Paper
@@ -288,7 +251,13 @@ const DashboardContent = () => {
               
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Services in progress</h5><br/>
+                  {(user.persona === 'admin' || user.persona === 'customer' )&& 
+                    (<h5 style={{ fontWeight: 'bold' , color:'gray'}}> Services in progress</h5>)}
+                  
+                  {(user.persona === 'owner' )&& 
+                    (<h5 style={{ fontWeight: 'bold' , color:'gray'}}> Upcoming Drone flights</h5>)}
+
+                    <br/>
                   <InProgressBookingList/>
                 </Paper>
               </Grid>
