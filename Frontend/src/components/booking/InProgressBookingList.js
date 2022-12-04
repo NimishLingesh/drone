@@ -46,7 +46,7 @@ const InProgressBookingList = props => {
         const persona = "customer";
         const status = deleteBooking(bookingId, persona);
         console.log("response status", status)
-        alert("Successfully deleted Booking Id", bookingId)
+        alert("Successfully deleted Booking Id " + id)
         console.log("Logging delete for booking Id", bookingId)
         getInProgressBookings()
         // if(Number(status) == 200){
