@@ -5,7 +5,7 @@ import express from 'express';
 
 import userRouter from './routes/userRoutes.js';
 import droneRouter from  './routes/droneRoutes.js';
-import bookingRouter from './routes/bookingRoutes.js';
+import bookingRouter from './routes/BookingRoutes.js';
 
 dotenv.config();
 var app = express();
