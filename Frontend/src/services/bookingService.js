@@ -51,3 +51,18 @@ export const fetchBookingListFromDB = async (customerId, persona) => {
     console.log('Booking Service', data);
     return {status, data};
 }
+
+export const deleteBooking = async (bookingId, persona) => {
+    const options = {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    }
+
+    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/booking/userBookings?bookingId=${bookingId}&persona=${persona}`, options);
+    console.log(response)
+    const status = response.status;
+    console.log("Status", status)
+    // const data  = await response.json();
+    console.log('Deleting Booking Service for ', bookingId);
+    return status;
+}

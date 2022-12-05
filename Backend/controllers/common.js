@@ -1,4 +1,5 @@
 export const sendInternalServerError = (res) => {
+    console.log(res)
     res.status(500).json({
         success: false,
         message: 'Internal Server Error',

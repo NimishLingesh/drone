@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect, useHistory } from "react-router";
 import {signup} from '../../services/authenticationService';
 import { AuthContext } from '../authenticaion/ProvideAuth';
+import { Row } from 'react-bootstrap';
 
 
 function Copyright(props) {
@@ -41,7 +42,6 @@ export default function Signup() {
   const [idCreated, setidCreated] = useState(0);
   const authContext = useContext(AuthContext);
   const [persona, setPersona] = useState('');
-
   const {setUser, setAuthState, updateLocalStorage} = authContext;
 
   const handleSubmit = async (event) => {
@@ -92,6 +92,7 @@ export default function Signup() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
+        
         <Grid
           item
           xs={false}
@@ -124,79 +125,245 @@ export default function Signup() {
 
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <br></br>
-            <Grid item xs={12}>
-                  <div class="form-check form-check-inline">
-                    <input 
-                      checked={persona === 'Customer'} 
-                      class="form-check-input" 
-                      type="radio" 
-                      name="customer" 
-                      id="customer"
-                      onClick={()=>{setPersona('Customer')}}
-                    />
-                    <label 
-                      class="form-check-label" for="customer">
-                      Farmer
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input 
-                      checked={persona === 'Owner'}  
-                      class="form-check-input" 
-                      type="radio" 
-                      name="droneOwner" 
-                      id="droneOwner"
-                      onClick={()=>{setPersona('Owner')}}
-                    />
-                    <label class="form-check-label" for="droneOwner">
-                      Pilot
-                    </label>
-                  </div>
-              </Grid>
-              <br></br>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="firstName"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    autoFocus
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="family-name"
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                      required
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      label="phoneNumber"
+                      fullWidth
+                      autoComplete="phone-number"
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                <center>
+                <div className="col-sm-6">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="Customer"
+                      value="Customer"
+                      checked={persona === "Customer"}
+                      onChange={(e) => setPersona(e.currentTarget.value)}
+                    />
+                    <label className="form-check-label">Farmer</label>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      value="Owner"
+                      name="Owner"
+                      checked={persona === "Owner"}
+                      onChange={(e) => setPersona(e.currentTarget.value)}
+                    />
+                    <label className="form-check-label">Pilot</label>
+                  </div>
+                </div>
+                <div xs={12} sm={12}>
+                  {persona === "Owner" && (
+                    <div className="card">
+                      <div className="card-body">
+                        <h5>Pilot's Personal Details for Registration</h5>
+                        <Grid>
+                          <Row>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="address1"
+                                name="address1"
+                                label="Address line 1"
+                                fullWidth
+                                autoComplete="shipping address-line1"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="city"
+                                name="city"
+                                label="City"
+                                fullWidth
+                                autoComplete="shipping address-level2"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="zip"
+                                name="zip"
+                                label="Zip / Postal code"
+                                fullWidth
+                                autoComplete="shipping postal-code"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="country"
+                                name="country"
+                                label="Country"
+                                fullWidth
+                                autoComplete="shipping country"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="licensenumber"
+                                name="licensenumber"
+                                label="Pilot's License Number"
+                                fullWidth
+                                autoComplete="Pilot's License"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                          </Row>
+
+                        </Grid>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div xs={12} sm={12}>
+                  {persona === "Customer" && (
+                    <div className="card">
+                      <div className="card-body">
+                        <h5>Farmer's Personal Details for Registration</h5>
+                        <Grid>
+                          <Row>
+                            
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="address1"
+                                name="address1"
+                                label="Address line 1"
+                                fullWidth
+                                autoComplete="shipping address-line1"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="city"
+                                name="city"
+                                label="City"
+                                fullWidth
+                                autoComplete="shipping address-level2"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="zip"
+                                name="zip"
+                                label="Zip / Postal code"
+                                fullWidth
+                                autoComplete="shipping postal-code"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="country"
+                                name="country"
+                                label="Country"
+                                fullWidth
+                                autoComplete="shipping country"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                              <TextField
+                                required
+                                id="licensenumber"
+                                name="licensenumber"
+                                label="Farming License Number"
+                                fullWidth
+                                autoComplete="Farming License Number"
+                                variant="standard"
+                              />
+                            </Grid>
+
+                          </Row>
+
+                        </Grid>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                </center>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
+              
+              <br></br>
             </Grid>
             <Button
               type="submit"
@@ -210,7 +377,7 @@ export default function Signup() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
