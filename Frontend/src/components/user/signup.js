@@ -213,7 +213,7 @@ export default function Signup() {
                   {persona === "Owner" && (
                     <div className="card">
                       <div className="card-body">
-                        <h5>Pilot's Personal Details</h5>
+                        <h5>Pilot's Personal Details for Registration</h5>
                         <Grid>
                           <Row>
 
@@ -289,7 +289,7 @@ export default function Signup() {
                   {persona === "Customer" && (
                     <div className="card">
                       <div className="card-body">
-                        <h5>Farmer's Personal Details</h5>
+                        <h5>Farmer's Personal Details for Registration</h5>
                         <Grid>
                           <Row>
                             
