@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Select from '@mui/material/Select';
+import TimePicker from 'react-time-picker';
 import MenuItem from '@mui/material/MenuItem';
 import { Row } from 'react-bootstrap';
 
@@ -40,12 +41,8 @@ export default function FindSourceAndDestination(props) {
       }
     );
   }
-<<<<<<< Updated upstream
-=======
   const [value, onChange] = useState('10:00');
-  
 
->>>>>>> Stashed changes
   const bookingCalender = () => {
     const onPanelChange = (value, mode) => {
       console.log(value.format('YYYY-MM-DD'), mode);
@@ -93,30 +90,12 @@ export default function FindSourceAndDestination(props) {
         <div>
           
         </div>
-<<<<<<< Updated upstream
-        <center>
-          <Grid item xs={4}>
-          
-          <Calendar
-            fullscreen={false} 
-            onPanelChange={(e) => {bookingCalender(e)}}
-            id="calender"
-            name="calnder"
-            label="calender"
-            variant="standard"
-            // onChange={(e) => {bookingCalender(e)}}
-            defaultValue={props.booking ? props.booking.destination : ''}
-          />
-          </Grid>
-        </center>
-=======
           <Row>
             <Grid item xs={12} md={6} lg={6} xl={6} style={{textAlign: 'left'}}>
               <div style={{margin: 60}}>
                 <label className="form-check-label">Select Sart time</label><br/>
                 <TimePicker required onChange={onChange} name="timestart" value1={value} />
                 <br/><br/>
->>>>>>> Stashed changes
 
                 <label className="form-check-label">Select End time</label><br/>
                 <TimePicker required onChange={onChange} name="timeend" value2={value} />

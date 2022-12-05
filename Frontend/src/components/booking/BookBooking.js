@@ -31,11 +31,8 @@ function Copyright() {
   );
 }
 
-<<<<<<< Updated upstream
-const steps = ['Select the area', 'Select the drone', 'Confirm the booking'];
-=======
 const steps = ['Select the area, date and time', 'Select the drone', 'Confirm the booking','Payment details'];
->>>>>>> Stashed changes
+
 
 
 
