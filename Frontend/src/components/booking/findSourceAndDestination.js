@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Select from '@mui/material/Select';
+import TimePicker from 'react-time-picker';
 import MenuItem from '@mui/material/MenuItem';
 
 export default function FindSourceAndDestination(props) {
@@ -38,6 +39,8 @@ export default function FindSourceAndDestination(props) {
       }
     );
   }
+  const [value, onChange] = useState('10:00');
+
   const bookingCalender = () => {
     const onPanelChange = (value, mode) => {
       console.log(value.format('YYYY-MM-DD'), mode);
@@ -51,9 +54,7 @@ export default function FindSourceAndDestination(props) {
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Select Farm and Farmland
-      </Typography>
+  
       <Grid container spacing={3}>
       <Grid item xs={12}>
           <TextField
@@ -84,7 +85,9 @@ export default function FindSourceAndDestination(props) {
         </div>
         <center>
           <Grid item xs={4}>
-          
+          <div style={{margin: 30}}>
+            <TimePicker onChange={onChange} value={value} />
+          </div>
           <Calendar
             fullscreen={false} 
             onPanelChange={(e) => {bookingCalender(e)}}
