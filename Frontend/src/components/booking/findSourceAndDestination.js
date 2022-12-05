@@ -8,6 +8,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Select from '@mui/material/Select';
 import TimePicker from 'react-time-picker';
 import MenuItem from '@mui/material/MenuItem';
+import { Row } from 'react-bootstrap';
+
 
 export default function FindSourceAndDestination(props) {
 
@@ -51,17 +53,21 @@ export default function FindSourceAndDestination(props) {
       </div>
     );
   };
+  
 
   return (
     <React.Fragment>
-  
+      <Typography variant="h6" gutterBottom>
+        Select Farm and Farmland
+      </Typography>
       <Grid container spacing={3}>
       <Grid item xs={12}>
           <TextField
             id="source"
             name="source"
-            label="Farm"
+            label="Farm Address"
             fullWidth
+            required
             autoComplete="Source"
             variant="standard"
             onChange={(e) => {setSource(e)}}
@@ -74,6 +80,7 @@ export default function FindSourceAndDestination(props) {
             name="destination"
             label="Farmland"
             fullWidth
+            required
             autoComplete="Drone Type"
             variant="standard"
             onChange={(e) => {setDestination(e)}}
@@ -83,84 +90,52 @@ export default function FindSourceAndDestination(props) {
         <div>
           
         </div>
-        <center>
-          <Grid item xs={4}>
-          <div style={{margin: 30}}>
-            <TimePicker onChange={onChange} value={value} />
-          </div>
-          <Calendar
-            fullscreen={false} 
-            onPanelChange={(e) => {bookingCalender(e)}}
-            id="calender"
-            name="calnder"
-            label="calender"
-            variant="standard"
-            // onChange={(e) => {bookingCalender(e)}}
-            defaultValue={props.booking ? props.booking.destination : ''}
-          />
-          </Grid>
-        </center>
+          <Row>
+            <Grid item xs={12} md={6} lg={6} xl={6} style={{textAlign: 'left'}}>
+              <div style={{margin: 60}}>
+                <label className="form-check-label">Select Sart time</label><br/>
+                <TimePicker required onChange={onChange} name="timestart" value1={value} />
+                <br/><br/>
 
-        <Grid item xs={12}>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={props.booking ? props.booking.droneType : ''}
-          label="Drone Type"
-          onChange={setDroneType}
-          autoWidth
-          style={{width:'30%'}}
-        >
-          <MenuItem value={'Mini'}>DJI Mini SE Data collection</MenuItem>
-          <MenuItem value={'Phantom'}>DJI Phantom Pro 4 Surveillence</MenuItem>
-          <MenuItem value={'Agras'}>DJI Agras T20 Payload</MenuItem>
-          </Select>
-        </Grid>
+                <label className="form-check-label">Select End time</label><br/>
+                <TimePicker required onChange={onChange} name="timeend" value2={value} />
+                <br/><br/>
         
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="pickupDate"
-            name="pickupDate"
-            label="Pick-up date"
-            fullWidth
-            autoComplete="Pick-up date"
-            variant="standard"
-          />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="time"
-            name="time"
-            label="Time"
-            fullWidth
-            autoComplete="Time"
-            variant="standard"
-          />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="dropoffDate"
-            name="dropoffDate"
-            label="Drop-off date"
-            fullWidth
-            autoComplete="Drop-off date"
-            variant="standard"
-          />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="time"
-            name="time"
-            label="Time"
-            fullWidth
-            autoComplete="Time"
-            variant="standard"
-          />
-        </Grid> */}
+                <Grid>
+                  <label className="form-check-label">Select the Drone Type</label><br/>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={props.booking ? props.booking.droneType : ''}
+                    label="Drone Type"
+                    onChange={setDroneType}
+                    autoWidth
+                    required
+                    style={{width:'70%'}}
+                  >
+                    <MenuItem value={'Mini'}>DJI Mini SE Data collection</MenuItem>
+                    <MenuItem value={'Phantom'}>DJI Phantom Pro 4 Surveillence</MenuItem>
+                    <MenuItem value={'Agras'}>DJI Agras T20 Payload</MenuItem>
+                    </Select>
+                  </Grid>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={6} xl={6}>
+                <Calendar
+                fullscreen={false} 
+                required
+                onPanelChange={(e) => {bookingCalender(e)}}
+                id="calender"
+                name="calnder"
+                label="calender"
+                variant="standard"
+                // onChange={(e) => {bookingCalender(e)}}
+                defaultValue={props.booking ? props.booking.destination : ''}
+              />
+            </Grid>
+          </Row>
+
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}

@@ -31,7 +31,8 @@ function Copyright() {
   );
 }
 
-const steps = ['Select the area, date and time', 'Select the drone', 'Confirm the booking'];
+const steps = ['Select the area, date and time', 'Select the drone', 'Confirm the booking','Payment details'];
+
 
 
 
@@ -96,7 +97,7 @@ export default function BookBooking() {
         }}
       >
       </AppBar>
-      <Container component="main" maxWidth="m" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Drone Booking
