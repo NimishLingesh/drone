@@ -103,14 +103,32 @@ export default function Profile(props) {
          <Row>   
         <Col>
             <br/><br/><br/>
-            <ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
+            {(user.persona === 'customer') && (<ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
             image="https://media.istockphoto.com/id/1326518001/photo/happy-female-farmer-holding-a-wood-box-containing-fresh-vegetables.jpg?b=1&s=170667a&w=0&k=20&c=jHYrjrRjNoXxbR50k5KtMTqXWgKhJSaWRtX3pgnIQiM="
             roundedColor="tranparent"
             imageWidth="250"
             imageHeight="250"
             roundedSize="13"
             hoverColor="#1c3f60"
-          />
+          />)}
+
+            {(user.persona === 'owner') && (<ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
+            image="https://www.careersinfilm.com/wp-content/uploads/2019/02/drone-pilot.jpg"
+            roundedColor="tranparent"
+            imageWidth="250"
+            imageHeight="250"
+            roundedSize="13"
+            hoverColor="#1c3f60"
+          />)}
+
+            {(user.persona === 'admin') && (<ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqhFB4mkDousEdDcsoVE8h3DwCy7qEv_y8uQ&usqp=CAU"
+            roundedColor="tranparent"
+            imageWidth="250"
+            imageHeight="250"
+            roundedSize="13"
+            hoverColor="#1c3f60"
+          />)}
 
           <br/><br/>
           
