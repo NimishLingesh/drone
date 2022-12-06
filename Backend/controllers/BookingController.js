@@ -173,12 +173,12 @@ export const getInProgressBooking = (req, res) => {
         }
 
         else if(persona === 'owner'){
-            inProgressBookingsQuery = `select user.userId , pilot.userid, user.fname, user.lname, drone.chargePerHour,
+            inProgressBookingsQuery = `select user.userId , pilot.userid, user.fname, user.lname, droneNumber, drone.chargePerHour,
             booking.droneId, booking.bookingId, source, destination, status, customerId 
                     from booking INNER JOIN drone on drone.droneId = booking.droneId 
                     inner join user on booking.customerId = user.userId 
-                    inner join pilot on booking.pilotid = pilot.userid
-                    where status = 'In-Progress' and pilot.userid = ?;`;
+                    inner join pilot on pilot.userid = ?
+                    where status = 'In-Progress';`;
                     con.query(inProgressBookingsQuery, [userId], (err, result)=>{
                         if(err){
                             console.log(err);
