@@ -10,16 +10,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import { Col, Row } from 'react-bootstrap';
 import GoogleMapReact from 'google-map-react';
-import Button from '@mui/material/Button';
 import _ from 'lodash';
 import Autocomplete from "react-google-autocomplete";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Marker from '../user/Marker';
-const AddLand = () => {
+const DroneTracking = () => {
     var m;
     var ms;
 
-    var triangleCoords = [];
+    var data = require('./response.json'); 
+    var coordinateArray = data.tracking_data;
+    const triangleCoords = [];
 
 
 var setPolygon = (map, maps) => {
@@ -28,7 +29,7 @@ var setPolygon = (map, maps) => {
         strokeColor: "#000000",
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: "#228B22",
+        fillColor: "#FF0000",
         fillOpacity: 0.35
       });
       bermudaTriangle.setMap(map);
@@ -70,9 +71,7 @@ var setPolygon = (map, maps) => {
         zoom: 12
       };
 
-const submitLand =  () => {
-triangleCoords=[];
-};
+
       return (
         <React.Fragment>
           <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
@@ -81,7 +80,7 @@ triangleCoords=[];
             <br></br><br></br>
             <Typography variant="h6" gutterBottom>
             Add Plot information
-          </Typography><br/>
+          </Typography><br/><br/><br/>
           <Grid container spacing={3}>
             <Grid item xs={11} sm={6}>
               <TextField
@@ -110,13 +109,9 @@ triangleCoords=[];
                     
                   </Grid>
               </Col>
-
-           
             </Grid>
-
-            
             <br></br><br></br></Col></Row>
-            <div style={{ height: '50vh', width: '100%' }}>
+            <div style={{ height: '100vh', width: '100%' }}>
          
             <GoogleMapReact
             onClick={ev => {
@@ -132,23 +127,10 @@ triangleCoords=[];
     >
     
     </GoogleMapReact>
-    <Col>
-                  <Grid item xs={12} sm={6} style={{margin:10, leftmargin:80}}>
-                  <Button
-                                        variant="contained"
-                                        sx={{ mt: 3, ml: 1 }}
-                                        class="hide-on-print" 
-                                        onclick={{submitLand}}
-                                        
-                                    >
-                                        Submit Land
-                                    </Button>
-                  </Grid>
-              </Col>
         </div>
           </Container>
         </React.Fragment>
       );
     }
 
-export default AddLand;
+export default DroneTracking;

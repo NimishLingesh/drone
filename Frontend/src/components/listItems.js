@@ -127,6 +127,19 @@ export const mainListItems = (persona) => {
       </Link>
       )}
 
+{(persona === 'customer' )&& (<Link to={{
+      pathname: '/DroneTracking',
+      state: {
+        persona: 'customer'
+      }}}>
+      <ListItem button >
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText style={{color: 'Black'}} primary="Drone Tracking" />
+      </ListItem>
+      </Link>
+      )}
       {(persona === 'customer' )&& (<Link to={{
       pathname: '',
       state: {

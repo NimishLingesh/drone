@@ -9,6 +9,8 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Wallet from './wallet';
 import { Col, Row } from 'react-bootstrap';
+import img from './land1.png';
+import img2 from './land2.png';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import ProvideAuth, { AuthContext } from '../authenticaion/ProvideAuth';
@@ -382,17 +384,32 @@ export default function Profile(props) {
           </Typography>
 
 
-          <div class="col-md-6 col-lg-3 ftco-animate">
+          <div class="col-md-6  ftco-animate">
     				<div class="product">
               <CardMedia
               component="img"
               // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-              image="https://images.unsplash.com/photo-1501430654243-c934cec2e1c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hlYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              image={img}
                             alt="{post.imageLabel}"
             />
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h6>Wheat field</h6>
+    						<h6>Plot 1: Josh</h6>
 		    					<p><span>4000 Sq.ft.</span></p>
+    					</div>
+    				</div>
+    			</div>
+
+          <div class="col-md-6  ftco-animate">
+    				<div class="product">
+              <CardMedia
+              component="img"
+              // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+              image={img2}
+                            alt="{post.imageLabel}"
+            />
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h6>Plot 2: Kent Farms</h6>
+		    					<p><span>8400 Sq.ft.</span></p>
     					</div>
     				</div>
     			</div>
