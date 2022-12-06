@@ -52,7 +52,7 @@ const AddDrone = () => {
       // case 1:
         // return <UserVerification drone={drone} setDrone={setDrone}/>;
       case 1:
-        return <ReviewDrone drone={drone} setDrone={setDrone}/>;
+        return <ReviewDrone drone={drone} setDrone={setDrone}/>;  
       default:
         // throw new Error('Unknown step');
     }
@@ -129,7 +129,8 @@ const AddDrone = () => {
                       Back
                     </Button>
                   )}
-
+                  <br></br>
+                  <br></br>
                   <Button
                     variant="contained"
                     onClick={handleNext}
