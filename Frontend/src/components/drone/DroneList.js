@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {fetchDroneListFromDB, fetchDroneListFromDBForOwner} from '../../services/droneService';
+import {deleteDroneRecord, fetchDroneListFromDB, fetchDroneListFromDBForOwner} from '../../services/droneService';
 import Radio from '@mui/material/Radio';
 import { AuthContext } from '../authenticaion/ProvideAuth';
 
@@ -33,6 +33,7 @@ const rows = [
 export default function DroneList(props) {
 
   const authContext = useContext(AuthContext);
+  const {user} = authContext;
   const [droneList, setDroneList] = useState();
   const [loading, setLoading] = useState(true);
   console.log(props); 
@@ -111,6 +112,17 @@ export default function DroneList(props) {
 
   }
 
+  function deleteDrone(id) {
+    setLoading(true);
+    const droneId = id;
+    // const persona = "customer";
+    const status = deleteDroneRecord(droneId);
+    console.log("response status", status);
+    alert("Successfully deleted Drone with Id " + id);
+    console.log("Logging delete for drone Id", droneId);
+    fetchDroneListForCustomer();
+  }
+
   return (
     <>
     {!loading && (
@@ -130,7 +142,7 @@ export default function DroneList(props) {
             <TableCell align="right">Drone Model</TableCell>
             <TableCell align="right">Charge Per Hour</TableCell>
             <TableCell align="right">Mileage</TableCell>
-
+            {/* <TableCell align="right">Delete</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -154,7 +166,12 @@ export default function DroneList(props) {
               <TableCell align="right">{row.model}</TableCell>
               <TableCell align="right">{row.chargePerHour}</TableCell>
               <TableCell align="right">{row.mileage}</TableCell>
-
+              <button onClick={() => deleteDrone(row.droneId)} className="btn btn-sm btn-danger btn-delete-user">
+                  {user.isDeleting 
+                      ? <span className="spinner-border spinner-border-sm"></span>
+                      : <span>Delete</span>
+                  }
+              </button>
 
             </TableRow>
           )})}

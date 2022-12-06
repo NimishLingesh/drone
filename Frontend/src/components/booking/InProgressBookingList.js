@@ -134,7 +134,7 @@ const InProgressBookingList = props => {
                     <TableCell align="right">{row.destination}</TableCell>
                     <TableCell align="right">{row.droneId}</TableCell>
                     <TableCell style={{color:' green'}}align="right">{row.status}</TableCell>
-                    <Button variant="contained" color='blue'>Edit</Button>
+                    {/* <Button variant="contained" color='blue'>Edit</Button> */}
                     <button onClick={() => deleteUser(row.bookingId)} className="btn btn-sm btn-danger btn-delete-user">
                         {user.isDeleting 
                             ? <span className="spinner-border spinner-border-sm"></span>

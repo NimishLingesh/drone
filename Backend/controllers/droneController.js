@@ -147,3 +147,24 @@ export const getDronesByOwner = (req, res) => {
         sendInternalServerError(res);
     }
 }
+
+export const deleteDronesById = (req, res) => {
+    try{
+        const droneId = req.query.droneId;
+        // const persona = req.query.persona;
+        let query;
+        query = `DELETE FROM drone_verse.drone WHERE (droneId = '${droneId}');`;
+        con.query(query, [droneId], (err, result)=>{
+            if(err){
+                console.log(err);
+                sendInternalServerError(res);
+            }
+            else{
+                sendCustomSuccess(res, result); 
+            }
+        })
+    }
+    catch(e){
+        sendInternalServerError(e);
+    }
+}
