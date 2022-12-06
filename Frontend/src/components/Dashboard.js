@@ -29,6 +29,8 @@ import {useHistory} from 'react-router-dom';
 import { fechInProgressBookings } from '../services/bookingService';
 import InProgressBookingList from './booking/InProgressBookingList';
 import BookBookingButton from './booking/BookBookingButton';
+import GoogleMapReact from 'google-map-react';
+import Marker from './user/Marker';
 import { Progress, Space } from 'antd';
 
 function Copyright(props) {
@@ -93,6 +95,42 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const uluru = { lat: 37.3387, lng: -121.8853 };
+  
+  const triangleCoords = [{  lat: 25.774, lng: -80.19 },
+    { lat: 18.466, lng: -66.118 },
+    { lat: 32.321, lng: -64.757 },
+    { lat: 25.774, lng: -80.19 }];
+
+  const defaultProps = {
+    center: uluru,
+    zoom: 10
+  };
+
+
+var handleApiLoaded = (map, maps) => {
+
+   var bermudaTriangle = new maps.Polygon({
+    paths: triangleCoords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35
+  });
+  bermudaTriangle.setMap(map);
+}
+  
+  const getMapOptions = (maps: any) => {
+    return {
+      disableDefaultUI: true,
+      mapTypeControl: true,
+      streetViewControl: true,
+      styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
+    };
+  };
+
+
 const mdTheme = createTheme();
 
 const DashboardContent = () => {
@@ -116,47 +154,7 @@ const DashboardContent = () => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
-          <Toolbar
-            sx={{
-              pr: '24px', // keep right padding when drawer closed
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
 
-            <ListItem button  component={Link} to="/Dashboard">
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText style={{color: 'Black'}} primary="Home" />
-            </ListItem>
-
-            <ListItem button component={Link} to="#">
-              <ListItemIcon>
-                <CallIcon />
-              </ListItemIcon>
-              <ListItemText style={{color: 'Black'}} primary="Contact" />
-            </ListItem>
-
-            <ListItem button component={Link} to="/profile">
-              <ListItemIcon>
-                <AccountCircleIcon />
-              </ListItemIcon>
-              <ListItemText style={{color: 'Black'}} primary="Profile" />
-            </ListItem>
-      
-          </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <Toolbar
@@ -248,7 +246,45 @@ const DashboardContent = () => {
                       </Paper>
                     </Grid>
                )}
-              
+
+               
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                  
+                  {(user.persona === 'owner' )&& 
+                    (<h5 style={{ fontWeight: 'bold' , color:'gray'}}> Devansh Drone flights</h5>)}
+
+                    <br/>
+                    <div style={{ height: '30vh', width: '100%' }}>
+
+                    <GoogleMapReact
+        onClick={ev => {
+          console.log("latitide = ", ev.lat);
+          console.log("longitude = ", ev.lng);
+        }}
+  bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
+  defaultCenter={defaultProps.center}
+  defaultZoom={defaultProps.zoom}
+  yesIWantToUseGoogleMapApiInternals
+  options={getMapOptions}
+  onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+>
+  
+<Marker
+            lat={37.3387}
+            lng={-121.8853}
+            name="My Marker"
+            color="blue"
+          />
+          <Marker
+            lat={40.3387}
+            lng={-119.8853}
+            name="My Marker"
+            color="red"
+          />
+</GoogleMapReact>
+</div>>
+                </Paper>
+              </Grid>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   {(user.persona === 'admin' || user.persona === 'customer' )&& 
