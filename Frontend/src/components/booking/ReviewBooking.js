@@ -15,6 +15,10 @@ const ReviewBooking = (props) => {
 
     const {booking} = props;
 
+    function printReceipt() {
+        window.print();
+      };
+
     return (
         <Grid>
             <Row>
@@ -83,7 +87,7 @@ const ReviewBooking = (props) => {
                     </TableContainer>
                 </Col>
                 <Col>
-                    <div className="preview-container" >
+                    <div class="print-receipt" >
                         <h2>Bill</h2>
                         <Grid>
                             <Row>
@@ -102,9 +106,12 @@ const ReviewBooking = (props) => {
                                     <Button
                                         variant="contained"
                                         sx={{ mt: 3, ml: 1 }}
+                                        class="hide-on-print" 
+                                        onClick={printReceipt}
                                     >
                                         Download Bill
                                     </Button>
+                                    {/* <button class="hide-on-print" onClick={printReceipt}>Print</button> */}
                                 </Col>
                             </Row>
                         </Grid>
