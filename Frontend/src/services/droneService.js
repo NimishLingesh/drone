@@ -40,3 +40,18 @@ export const addDrone = async (drone, user) => {
     const data = await response.json();
     return {status, data};
 }
+
+export const deleteDroneRecord = async (droneId) => {
+    const options = {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    }
+
+    const response = await fetch(`${BACKEND_URL}:${BACKEND_PORT}/drone/drone_details?droneId=${droneId}`, options);
+    console.log(response)
+    const status = response.status;
+    console.log("Status", status)
+    // const data  = await response.json();
+    console.log('Deleting Drone Records for ', droneId);
+    return status;
+}

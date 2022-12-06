@@ -68,7 +68,7 @@ export default function BookingList() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell>Booking Number</TableCell>
+                <TableCell align="right">Booking Number</TableCell>
                 <TableCell align="right">Source</TableCell>
                 <TableCell align="right">Destination</TableCell>
                 <TableCell align="right">Charge Per Daye</TableCell>
@@ -82,7 +82,7 @@ export default function BookingList() {
                 key={row.droneId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                <TableCell component="th" scope="row">
+                <TableCell align="right" component="th" scope="row">
                     {row.bookingId}
                 </TableCell>
                 <TableCell align="right">{row.source}</TableCell>

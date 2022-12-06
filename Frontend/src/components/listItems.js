@@ -86,7 +86,7 @@ export const mainListItems = (persona) => {
       <Link to={{
         pathname: '/BookingList',
         state: {
-          persona: 'owner'
+          persona: 'admin'
         }}}>
         <ListItem button >
           <ListItemIcon>
@@ -144,12 +144,20 @@ export const mainListItems = (persona) => {
       )}
 
       {(persona === 'admin') && (
-        <ListItem button component={Link} to='/Dashboard'>
+      <Link to={{
+        // pathname: '/BookingList',
+        pathname: '/DroneList',
+        state: {
+          persona: 'admin'
+        }
+        }}>
+        <ListItem button>
         <ListItemIcon>
           <ListAltIcon />
         </ListItemIcon>
         <ListItemText style={{color: 'Black'}} primary="View Drones" />
       </ListItem>
+      </Link>
       )}
 
     </div>
