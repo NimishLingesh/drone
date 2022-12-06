@@ -250,9 +250,7 @@ const DashboardContent = () => {
                
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                  
-                  {(user.persona === 'owner' )&& 
-                    (<h5 style={{ fontWeight: 'bold' , color:'gray'}}> Devansh Drone flights</h5>)}
-
+             
                     <br/>
                     <div style={{ height: '30vh', width: '100%' }}>
 
@@ -282,7 +280,7 @@ const DashboardContent = () => {
             color="red"
           />
 </GoogleMapReact>
-</div>>
+</div>
                 </Paper>
               </Grid>
               <Grid item xs={12}>

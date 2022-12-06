@@ -166,12 +166,14 @@ export default function DroneList(props) {
               <TableCell align="right">{row.model}</TableCell>
               <TableCell align="right">{row.chargePerHour}</TableCell>
               <TableCell align="right">{row.mileage}</TableCell>
+              {user == "admin" && 
               <button onClick={() => deleteDrone(row.droneId)} className="btn btn-sm btn-danger btn-delete-user">
                   {user.isDeleting 
                       ? <span className="spinner-border spinner-border-sm"></span>
                       : <span>Delete</span>
                   }
               </button>
+          }
 
             </TableRow>
           )})}

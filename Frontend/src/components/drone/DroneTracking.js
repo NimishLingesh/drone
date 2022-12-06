@@ -18,6 +18,19 @@ const DroneTracking = () => {
     var m;
     var ms;
 
+    var land1 = [{lat: 37.55737136399287, lng: -121.9392047503749}, {lat: 37.55730332225187, lng: -121.92830425293837}, {lat: 37.55356093081634
+, lng:-121.93285327942763
+}];
+
+    var land2 = [{lat: 37.594137670106356, lng: -121.9917274801814
+    }, {lat: 37.59590586030879
+, lng: -121.97765124727124
+}, {lat: 37.584887990548815, lng: -121.98812259126538}];
+
+var land3 = [{lat: 37.61331810720046, lng: -121.92456629450831
+}, {lat: 37.616309633020315
+, lng: -121.907400156813}, {lat: 37.60271081866213, lng: -121.91495325739893}];
+
     var data = require('./response.json'); 
     var coordinateArray = data.tracking_data;
     const triangleCoords = [];
@@ -46,14 +59,34 @@ var setPolygon = (map, maps) => {
        m = map;
        ms = maps;
         var bermudaTriangle = new maps.Polygon({
-         paths: triangleCoords,
+         paths: land1,
          strokeColor: "#000000",
          strokeOpacity: 0.8,
          strokeWeight: 2,
-         fillColor: "#FF0000",
+         fillColor: "#FFFFFF",
          fillOpacity: 0.35
        });
        bermudaTriangle.setMap(map);
+
+       var bermudaTriangle2 = new maps.Polygon({
+        paths: land2,
+        strokeColor: "#000000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35
+      });
+      bermudaTriangle2.setMap(map);
+
+      var bermudaTriangle1 = new maps.Polygon({
+        paths: land3,
+        strokeColor: "#000000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#242424",
+        fillOpacity: 0.35
+      });
+      bermudaTriangle1.setMap(map);
      }
      const getMapOptions = (maps: any) => {
         return {
@@ -77,46 +110,15 @@ var setPolygon = (map, maps) => {
           <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
             <Row>   
             <Col>
-            <br></br><br></br>
-            <Typography variant="h6" gutterBottom>
-            Add Plot information
-          </Typography><br/><br/><br/>
-          <Grid container spacing={3}>
-            <Grid item xs={11} sm={6}>
-              <TextField
-                required
-                id="plotName"
-                name="plotName"
-                label="Plot Name"
-                fullWidth
-                autoComplete="given-name"
-                variant="standard"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="plotArea"
-                name="plotArea"
-                label="Area of Plot in Sq.Ft."
-                fullWidth
-                autoComplete="family-name"
-                variant="standard"
-              />
-            </Grid>
-            <Col>
-                  <Grid item xs={12} sm={6}>
-                    
-                  </Grid>
-              </Col>
-            </Grid>
+        
             <br></br><br></br></Col></Row>
             <div style={{ height: '100vh', width: '100%' }}>
          
             <GoogleMapReact
             onClick={ev => {
               triangleCoords.push({lat: ev.lat, lng: ev.lng});
-              setPolygon(m,ms)
+              console.log(triangleCoords);
+            //   setPolygon(m,ms)
             }}
       bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
       defaultCenter={defaultProps.center}
@@ -125,7 +127,18 @@ var setPolygon = (map, maps) => {
       options={getMapOptions}
       onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
     >
-    
+    <Marker
+            lat={37.3387}
+            lng={-121.8853}
+            name="My Marker"
+            color="blue"
+          />
+          <Marker
+            lat={40.3387}
+            lng={-119.8853}
+            name="My Marker"
+            color="red"
+          />
     </GoogleMapReact>
         </div>
           </Container>
