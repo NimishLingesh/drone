@@ -14,6 +14,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import TodayIcon from '@mui/icons-material/Today';
@@ -78,6 +79,21 @@ export const mainListItems = (persona) => {
               <LibraryBooksIcon/>
             </ListItemIcon>
             <ListItemText style={{color: 'Black'}} primary="View Bookings" />
+          </ListItem>
+        </Link>
+      )}
+
+      {(persona === 'owner') && (
+        <Link to={{
+          pathname: '/Schedule',
+          state: {
+            persona: 'owner'
+          }}}>
+          <ListItem button >
+            <ListItemIcon>
+              <CalendarMonthIcon/>
+            </ListItemIcon>
+            <ListItemText style={{color: 'Black'}} primary="View Schedules" />
           </ListItem>
         </Link>
       )}
