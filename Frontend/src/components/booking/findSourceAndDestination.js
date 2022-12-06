@@ -94,11 +94,11 @@ export default function FindSourceAndDestination(props) {
             <Grid item xs={12} md={6} lg={6} xl={6} style={{textAlign: 'left'}}>
               <div style={{margin: 60}}>
                 <label className="form-check-label">Select Sart time</label><br/>
-                <TimePicker required onChange={onChange} name="timestart" value1={value} />
+                <TimePicker  onChange={onChange} name="timestart" value1={value} />
                 <br/><br/>
 
                 <label className="form-check-label">Select End time</label><br/>
-                <TimePicker required onChange={onChange} name="timeend" value2={value} />
+                <TimePicker  onChange={onChange} name="timeend" value2={value} />
                 <br/><br/>
         
                 <Grid>
@@ -110,7 +110,7 @@ export default function FindSourceAndDestination(props) {
                     label="Drone Type"
                     onChange={setDroneType}
                     autoWidth
-                    required
+                    
                     style={{width:'70%'}}
                   >
                     <MenuItem value={'Mini'}>DJI Mini SE Data collection</MenuItem>
@@ -124,7 +124,7 @@ export default function FindSourceAndDestination(props) {
             <Grid item xs={12} md={6} lg={6} xl={6}>
                 <Calendar
                 fullscreen={false} 
-                required
+                
                 onPanelChange={(e) => {bookingCalender(e)}}
                 id="calender"
                 name="calnder"
