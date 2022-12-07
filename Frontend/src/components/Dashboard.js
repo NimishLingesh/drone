@@ -264,8 +264,7 @@ const DashboardContent = () => {
                )}
                
                 {(user.persona === 'admin' )&& 
-                    (<Grid item xs={12} md={12} lg={12}>
-                      <Grid item xs={12} md={6} lg={6} xl={6}>
+                    (<Grid item xs={12} md={6} lg={6} xl={6}>
                         <Paper
                         sx={{
                           p: 2,
@@ -281,43 +280,6 @@ const DashboardContent = () => {
                             <Progress percent={25} size="small" strokeColor='green' format={() => `Survilience`}/>
                           </div>
                         </Paper>
-                      </Grid>
-
-                      {(user.persona === 'admin' || user.persona === 'owner')&& (<Grid item xs={12} md={6} lg={6} xl={6}>
-                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                  
-             
-                          <br/>
-                          <div style={{ height: '30vh', width: '100%' }}>
-
-                          <GoogleMapReact
-                                  onClick={ev => {
-                                    console.log("latitide = ", ev.lat);
-                                    console.log("longitude = ", ev.lng);
-                                  }}
-                            bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
-                            defaultCenter={defaultProps.center}
-                            defaultZoom={defaultProps.zoom}
-                            yesIWantToUseGoogleMapApiInternals
-                            options={getMapOptions}
-                            onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-                          >
-
-                          <Marker
-                                      lat={37.3387}
-                                      lng={-121.8853}
-                                      name="My Marker"
-                                      color="blue"
-                                    />
-                                    <Marker
-                                      lat={40.3387}
-                                      lng={-119.8853}
-                                      name="My Marker"
-                                      color="red"
-                                    />
-                          </GoogleMapReact>
-                        </div>
-                      </Paper>
-                      </Grid>)}
                     </Grid>
                )}
 
