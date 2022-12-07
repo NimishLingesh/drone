@@ -18,6 +18,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import TodayIcon from '@mui/icons-material/Today';
+import CloudIcon from '@mui/icons-material/Cloud';
 
 import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -172,6 +173,7 @@ export const mainListItems = (persona) => {
       </ListItem>
       )}
 
+
       {(persona === 'admin') && (
       <Link to={{
         // pathname: '/BookingList',
@@ -187,6 +189,15 @@ export const mainListItems = (persona) => {
         <ListItemText style={{color: 'Black'}} primary="View Drones" />
       </ListItem>
       </Link>
+      )}
+
+      {(persona === 'admin' )&& (
+        <ListItem button>
+          <a href="http://ec2-52-203-10-77.compute-1.amazonaws.com/flightmonitor/">
+            <CloudIcon/>
+            <ListItemText style={{color: 'Black'}} primary="Cloud station" />
+        </a>
+      </ListItem>
       )}
 
     </div>
