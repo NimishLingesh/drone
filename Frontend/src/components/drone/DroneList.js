@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import CardMedia from '@mui/material/CardMedia';
 import Paper from '@mui/material/Paper';
 import {deleteDroneRecord, fetchDroneListFromDB, fetchDroneListFromDBForOwner} from '../../services/droneService';
 import Radio from '@mui/material/Radio';
@@ -138,6 +139,7 @@ export default function DroneList(props) {
             ) : (
             <TableCell align="right">Drone Number</TableCell>
             )}
+            <TableCell align="right">Drone</TableCell>
             <TableCell align="right">Drone Type</TableCell>
             <TableCell align="right">Drone Model</TableCell>
             <TableCell align="right">Charge Per Hour</TableCell>
@@ -153,6 +155,7 @@ export default function DroneList(props) {
               key={row.droneNumber}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
+            
               {props.booking ? (
                 <>
                 <Radio value={JSON.stringify(row)} checked={row.droneId === props.booking.droneId} onChange={selectDrone}/>
@@ -162,17 +165,41 @@ export default function DroneList(props) {
                 <TableCell align="right">{row.droneNumber}</TableCell>
 
               )}
+              {(row.type === 'Phantom') && (
+                <TableCell align="right">
+                  {/* <CardMedia
+                      component="img"
+                      imageWidth="50"
+                      imageHeight="50"
+                      // sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
+                      image="https://img.tttcdn.com/product/xy/2000/2000/p/gu1/R/1/RM13847C-1-1/RM13847C-1-1-1-d0a9-nlyb.jpg"         
+                      roundedColor="tranparent"
+                      alt="{post.imageLabel}"
+                    /> */}
+                    <img height={50} width={50} src={"https://img.tttcdn.com/product/xy/2000/2000/p/gu1/R/1/RM13847C-1-1/RM13847C-1-1-1-d0a9-nlyb.jpg"}/>
+                </TableCell>)}
+
+                {(row.type === 'Mini') && (
+                <TableCell align="right">
+                  <img height={50} width={50} src={"https://img.tttcdn.com/product/xy/2000/2000/p/gu1/R/1/RM12729B-2-1/RM12729B-2-1-1-865d-PJKX.jpg"}/>
+                </TableCell>)}
+
+                {(row.type === 'Agras') && (
+                <TableCell align="right">
+                  <img height={50} width={50} src={"https://img.tttcdn.com/product/xy/2000/2000/p/gu1/R/1/RM12729B-2-1/RM12729B-2-1-1-865d-1Zu5.jpg"}/>
+                </TableCell>)}
+
               <TableCell align="right">{row.type}</TableCell>
               <TableCell align="right">{row.model}</TableCell>
               <TableCell align="right">{row.chargePerHour}</TableCell>
               <TableCell align="right">{row.mileage}</TableCell>
-              {user == "admin" && 
-              <button onClick={() => deleteDrone(row.droneId)} className="btn btn-sm btn-danger btn-delete-user">
+              {(user.persona === 'admin') && 
+              (<button onClick={() => deleteDrone(row.droneId)} className="btn btn-sm btn-danger btn-delete-user">
                   {user.isDeleting 
                       ? <span className="spinner-border spinner-border-sm"></span>
                       : <span>Delete</span>
                   }
-              </button>
+              </button>)
           }
 
             </TableRow>
