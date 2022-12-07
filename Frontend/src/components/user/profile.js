@@ -113,7 +113,7 @@ export default function Profile(props) {
           />)}
 
             {(user.persona === 'owner') && (<ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
-            image="https://www.careersinfilm.com/wp-content/uploads/2019/02/drone-pilot.jpg"
+            image="https://www.shutterstock.com/image-photo/young-man-drone-virtual-reality-260nw-1030510987.jpg"
             roundedColor="tranparent"
             imageWidth="250"
             imageHeight="250"
@@ -124,7 +124,7 @@ export default function Profile(props) {
             {(user.persona === 'admin') && (<ReactRoundedImage sx={{ my: { xs: 1, md: 6 }, p: { xs: 2, md: 3 } }}
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqhFB4mkDousEdDcsoVE8h3DwCy7qEv_y8uQ&usqp=CAU"
             roundedColor="tranparent"
-            imageWidth="250"
+            imageWidth="270"
             imageHeight="250"
             roundedSize="13"
             hoverColor="#1c3f60"
@@ -402,7 +402,7 @@ export default function Profile(props) {
           </Typography>
 
 
-          <div class="col-md-6  ftco-animate">
+          <div  >
     				<div class="product">
               <CardMedia
               component="img"

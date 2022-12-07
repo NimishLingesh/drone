@@ -13,9 +13,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Badge from '@mui/material/Badge';
-import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
+import { Col, Row } from 'react-bootstrap';
 import CallIcon from '@mui/icons-material/Call';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -190,19 +188,57 @@ const DashboardContent = () => {
             <Grid container spacing={3}>
               {/* Chart */}
               {(user.persona === 'customer' )&& 
-                    (<Grid item xs={12} md={12} lg={12}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: 380,
-                        }}
-                      >
-                        {/* <Chart /> */}
-                        
-                        <BookBookingButton/>
-                      </Paper>
+                    (<Grid item xs={12} md={12} lg={12} xl={12}>
+                      <Row>
+                        <Col item xs={6} md={6} lg={6} xl={6}>
+                          <Paper
+                            sx={{
+                              p: 2,
+                              display: 'flex',
+                              flexDirection: 'column',
+                              height: 380,
+                            }}
+                          >
+                            <BookBookingButton/>
+                          </Paper>
+                        </Col>
+
+                        <Col item xs={6} md={6} lg={6} xl={6}>
+                          <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                 
+                            <br/>
+                            <div style={{ height: '52vh', width: '100%' }}>
+
+                            <GoogleMapReact
+                                    onClick={ev => {
+                                      console.log("latitide = ", ev.lat);
+                                      console.log("longitude = ", ev.lng);
+                                    }}
+                              bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
+                              defaultCenter={defaultProps.center}
+                              defaultZoom={defaultProps.zoom}
+                              yesIWantToUseGoogleMapApiInternals
+                              options={getMapOptions}
+                              onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                            >
+
+                            <Marker
+                                        lat={37.3387}
+                                        lng={-121.8853}
+                                        name="My Marker"
+                                        color="blue"
+                                      />
+                                      <Marker
+                                        lat={40.3387}
+                                        lng={-119.8853}
+                                        name="My Marker"
+                                        color="red"
+                                      />
+                            </GoogleMapReact>
+                          </div>
+                        </Paper>
+                        </Col>
+                      </Row>
+                      
                     </Grid>
                )}
 
@@ -228,61 +264,99 @@ const DashboardContent = () => {
                )}
                
                 {(user.persona === 'admin' )&& 
-                    (<Grid item xs={12} md={6} lg={6}>
-                      <Paper
+                    (<Grid item xs={12} md={12} lg={12}>
+                      <Grid item xs={12} md={6} lg={6} xl={6}>
+                        <Paper
                         sx={{
                           p: 2,
                           display: 'flex',
                           flexDirection: 'column',
                         }}
-                      >
-                        <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Number of drone by Type</h5><br/>
-                        < div style={{ width: 400 }}>
-                          <Progress percent={100} size="small" strokeColor='purple'format={() => `Total Drone`} />
-                          <Progress percent={50} size="small"strokeColor='red' format={() => `Payload Service `} />
-                          <Progress percent={25} size="small"strokeColor='blue' format={() => `Data Collection`}/>
-                          <Progress percent={25} size="small" strokeColor='green' format={() => `Survilience`}/>
+                        >
+                          <h5 style={{ fontWeight: 'bold' , color:'gray'}}> Number of drone by Type</h5><br/>
+                          < div style={{ width: 400 }}>
+                            <Progress percent={100} size="small" strokeColor='purple'format={() => `Total Drone`} />
+                            <Progress percent={50} size="small"strokeColor='red' format={() => `Payload Service `} />
+                            <Progress percent={25} size="small"strokeColor='blue' format={() => `Data Collection`}/>
+                            <Progress percent={25} size="small" strokeColor='green' format={() => `Survilience`}/>
+                          </div>
+                        </Paper>
+                      </Grid>
+
+                      {(user.persona === 'admin' || user.persona === 'owner')&& (<Grid item xs={12} md={6} lg={6} xl={6}>
+                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                  
+             
+                          <br/>
+                          <div style={{ height: '30vh', width: '100%' }}>
+
+                          <GoogleMapReact
+                                  onClick={ev => {
+                                    console.log("latitide = ", ev.lat);
+                                    console.log("longitude = ", ev.lng);
+                                  }}
+                            bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
+                            defaultCenter={defaultProps.center}
+                            defaultZoom={defaultProps.zoom}
+                            yesIWantToUseGoogleMapApiInternals
+                            options={getMapOptions}
+                            onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                          >
+
+                          <Marker
+                                      lat={37.3387}
+                                      lng={-121.8853}
+                                      name="My Marker"
+                                      color="blue"
+                                    />
+                                    <Marker
+                                      lat={40.3387}
+                                      lng={-119.8853}
+                                      name="My Marker"
+                                      color="red"
+                                    />
+                          </GoogleMapReact>
                         </div>
                       </Paper>
+                      </Grid>)}
                     </Grid>
                )}
 
                
-              <Grid item xs={12}>
+            {(user.persona === 'admin' || user.persona === 'owner')&& (<Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>                  
              
                     <br/>
                     <div style={{ height: '30vh', width: '100%' }}>
 
                     <GoogleMapReact
-        onClick={ev => {
-          console.log("latitide = ", ev.lat);
-          console.log("longitude = ", ev.lng);
-        }}
-  bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
-  defaultCenter={defaultProps.center}
-  defaultZoom={defaultProps.zoom}
-  yesIWantToUseGoogleMapApiInternals
-  options={getMapOptions}
-  onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
->
+                            onClick={ev => {
+                              console.log("latitide = ", ev.lat);
+                              console.log("longitude = ", ev.lng);
+                            }}
+                      bootstrapURLKeys={{ key: "AIzaSyAc3tTkT5Qmm-A99sarIRLRQsVd0ORfP30"}}
+                      defaultCenter={defaultProps.center}
+                      defaultZoom={defaultProps.zoom}
+                      yesIWantToUseGoogleMapApiInternals
+                      options={getMapOptions}
+                      onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                    >
   
-<Marker
-            lat={37.3387}
-            lng={-121.8853}
-            name="My Marker"
-            color="blue"
-          />
-          <Marker
-            lat={40.3387}
-            lng={-119.8853}
-            name="My Marker"
-            color="red"
-          />
-</GoogleMapReact>
-</div>
+                    <Marker
+                                lat={37.3387}
+                                lng={-121.8853}
+                                name="My Marker"
+                                color="blue"
+                              />
+                              <Marker
+                                lat={40.3387}
+                                lng={-119.8853}
+                                name="My Marker"
+                                color="red"
+                              />
+                    </GoogleMapReact>
+                  </div>
                 </Paper>
-              </Grid>
+              </Grid>)}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   {(user.persona === 'admin' || user.persona === 'customer' )&& 
