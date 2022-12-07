@@ -24,6 +24,22 @@ import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
 export const mainListItems = (persona) => {
   console.log(persona);
+
+  const buttonDownload = () => {
+        // using Java Script method to get PDF file
+        fetch('Service_report.pdf').then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = 'Service_report.pdf';
+                alink.click();
+            })
+        })
+    }
+
   return(
     <div>
       <ListItem button>
@@ -146,11 +162,11 @@ export const mainListItems = (persona) => {
       state: {
         persona: 'customer'
       }}}>
-      <ListItem button >
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText style={{color: 'Black'}} primary="Service Report" />
+      <ListItem button onClick={buttonDownload}>
+          <ListItemIcon>
+            <BarChartIcon />
+          </ListItemIcon>
+          <ListItemText style={{color: 'Black'}} primary="Service Report" />
       </ListItem>
       </Link>
       )}
