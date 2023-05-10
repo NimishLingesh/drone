@@ -10,8 +10,8 @@ import { Col, Row } from 'react-bootstrap';
 import BookingList from '../drone/DroneList';
 import { Divider } from 'antd';
 import Button from '@mui/material/Button';
-import 'react-credit-cards/es/styles-compiled.css';
-import Cards from 'react-credit-cards';
+// import 'react-credit-cards/es/styles-compiled.css';
+// import Cards from 'react-credit-cards';
 import  {useState}  from 'react';
 
 const Payment = (props) => {
@@ -49,14 +49,14 @@ const Payment = (props) => {
                     <center><h3>Payment</h3></center><br/>
                     <div id="PaymentForm">
                         <Row>
-                            <Col md={5} lg={5} xs={5} sm={5}>
+                            {/* <Col md={5} lg={5} xs={5} sm={5}>
                                     <Cards
                                     cvc={state.cvc}
                                     expiry={state.expiry}
                                     name={state.name}
                                     number={state.number}
                                     />
-                            </Col>
+                            </Col> */}
                             <Col md={5} lg={5} xs={12} sm={12}>
                             <form>
                                 <input

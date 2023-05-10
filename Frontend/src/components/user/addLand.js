@@ -9,11 +9,11 @@ import {AsyncTypeahead} from 'react-bootstrap-typeahead';
 import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import { Col, Row } from 'react-bootstrap';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import Button from '@mui/material/Button';
 import _ from 'lodash';
-import Autocomplete from "react-google-autocomplete";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// import Autocomplete from "react-google-autocomplete";
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Marker from '../user/Marker';
 const AddLand = () => {
     var m;
@@ -118,7 +118,7 @@ triangleCoords=[];
             <br></br><br></br></Col></Row>
             <div style={{ height: '50vh', width: '100%' }}>
          
-            <GoogleMapReact
+            {/* <GoogleMapReact
             onClick={ev => {
               triangleCoords.push({lat: ev.lat, lng: ev.lng});
               setPolygon(m,ms)
@@ -131,7 +131,7 @@ triangleCoords=[];
       onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
     >
     
-    </GoogleMapReact>
+    </GoogleMapReact> */}
     <Col>
                   <Grid item xs={12} sm={6} style={{margin:10, leftmargin:80}}>
                   <Button

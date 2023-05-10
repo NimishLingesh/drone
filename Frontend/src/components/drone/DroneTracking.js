@@ -9,10 +9,10 @@ import {AsyncTypeahead} from 'react-bootstrap-typeahead';
 import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import { Col, Row } from 'react-bootstrap';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import _ from 'lodash';
-import Autocomplete from "react-google-autocomplete";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// import Autocomplete from "react-google-autocomplete";
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Marker from '../user/Marker';
 const DroneTracking = () => {
     var m;
@@ -114,7 +114,7 @@ var setPolygon = (map, maps) => {
             <br></br><br></br></Col></Row>
             <div style={{ height: '100vh', width: '100%' }}>
          
-            <GoogleMapReact
+            {/* <GoogleMapReact
             onClick={ev => {
               triangleCoords.push({lat: ev.lat, lng: ev.lng});
               console.log(triangleCoords);
@@ -139,7 +139,7 @@ var setPolygon = (map, maps) => {
             name="My Marker"
             color="red"
           />
-    </GoogleMapReact>
+    </GoogleMapReact> */}
         </div>
           </Container>
         </React.Fragment>

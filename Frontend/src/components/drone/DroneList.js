@@ -9,7 +9,9 @@ import Paper from '@mui/material/Paper';
 import {deleteDroneRecord, fetchDroneListFromDB, fetchDroneListFromDBForOwner} from '../../services/droneService';
 import Radio from '@mui/material/Radio';
 import { AuthContext } from '../authenticaion/ProvideAuth';
-
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
 function createData(bookingNumber, droneNumber, date,  charge) {
   return { bookingNumber, droneNumber, charge, date };
@@ -123,6 +125,25 @@ export default function DroneList(props) {
     fetchDroneListForCustomer();
   }
 
+  const itemData = [
+    {
+      // img: 'drone_data_collect.jpeg',
+      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fdrone&psig=AOvVaw2XV88D_ETOc2Tv1RqlCekV&ust=1670459280476000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOCF_fGf5vsCFQAAAAAdAAAAABAE',
+      title: 'Data collect',
+      author: '@bkristastucchio',
+    },
+    {
+      img: 'drone_payload.jpeg',
+      title: 'Payload',
+      author: '@rollelflex_graphy726',
+    },
+    {
+      img: 'drone_surveillance.jpeg',
+      title: 'Surveillence',
+      author: '@helloimnik',
+    },
+  ]
+
   return (
     <>
     {!loading && (
@@ -180,6 +201,26 @@ export default function DroneList(props) {
         </TableBody>
       </Table>
     </TableContainer>
+
+    // <ImageList sx={{ width: 500, height: 900 }}>
+    // {itemData.map((item) => (
+    //   <ImageListItem key={item.img}>
+    //     <img
+    //       src={`${item.img}?w=248&fit=crop&auto=format`}
+    //       srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+    //       alt={item.title}
+    //       loading="lazy"
+    //     />
+    //     <ImageListItemBar
+    //       title={item.title}
+    //       subtitle={<span>by: {item.author}</span>}
+    //       position="below"
+    //     />
+    //   </ImageListItem>
+    // ))}
+    // </ImageList>
+
+    
     )}
     </>
   );

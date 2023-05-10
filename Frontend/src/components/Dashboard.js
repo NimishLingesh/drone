@@ -29,7 +29,7 @@ import {useHistory} from 'react-router-dom';
 import { fechInProgressBookings } from '../services/bookingService';
 import InProgressBookingList from './booking/InProgressBookingList';
 import BookBookingButton from './booking/BookBookingButton';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import Marker from './user/Marker';
 import { Progress, Space } from 'antd';
 
@@ -254,7 +254,7 @@ const DashboardContent = () => {
                     <br/>
                     <div style={{ height: '30vh', width: '100%' }}>
 
-                    <GoogleMapReact
+                    {/* <GoogleMapReact
         onClick={ev => {
           console.log("latitide = ", ev.lat);
           console.log("longitude = ", ev.lng);
@@ -279,7 +279,7 @@ const DashboardContent = () => {
             name="My Marker"
             color="red"
           />
-</GoogleMapReact>
+</GoogleMapReact> */}
 </div>
                 </Paper>
               </Grid>
